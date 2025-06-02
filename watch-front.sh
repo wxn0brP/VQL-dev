@@ -1,0 +1,1 @@
+suglite -c "yarn build:front" -w "dist/front" -d 50

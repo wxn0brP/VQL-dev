@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "*"
+
+  workflow_dispatch:
+
+concurrency:
+  group: build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    with:
+      scriptsHandling: "remove-all"
+      customScripts: "node build.js"

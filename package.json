@@ -1,0 +1,33 @@
+{
+    "name": "@wxn0brp/vql-dev",
+    "version": "0.0.1",
+    "main": "dist/index.js",
+    "author": "wxn0brP",
+    "license": "MIT",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build:front": "node build.js",
+        "build": "tsc && tsc-alias",
+        "test": "node dist/test.js"
+    },
+    "peerDependencies": {
+        "@wxn0brp/vql": ">=0.3.3"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.29",
+        "@wxn0brp/db": "^0.7.6",
+        "@wxn0brp/vql": "^0.3.3",
+        "esbuild": "^0.25.5",
+        "esbuild-style-plugin": "^1.6.3",
+        "sass": "^1.89.1",
+        "tsc-alias": "^1.8.10",
+        "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "@wxn0brp/falcon-frame": "^0.0.5",
+        "@wxn0brp/flanker-ui": "github:wxn0brP/FlankerUi#dist",
+        "@wxn0brp/gloves-link": "github:wxn0brP/GlovesLink#dist",
+        "@wxn0brp/vql-client": "^0.0.2"
+    }
+}

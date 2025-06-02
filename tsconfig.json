@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "module": "ES2022",
+        "target": "ES2022",
+        "moduleResolution": "bundler",
+        "paths": {
+            "#/utils/*": ["./src/front/utils/*"],
+            "#/features/*": ["./src/front/features/*"],
+            "#/types/*": ["./src/front/types/*"],
+            "#/store": ["./src/front/store"],
+        },
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "outDir": "./dist",
+        "inlineSourceMap": true,
+        "resolveJsonModule": true,
+        "types": [
+            "esbuild-style-plugin"
+        ]
+    },
+    "include": [
+       "./src"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "tsc-alias": {
+        "resolveFullPaths": true,
+        "verbose": false
+    }
+}

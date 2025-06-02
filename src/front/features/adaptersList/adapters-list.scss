@@ -1,0 +1,36 @@
+#adapters-list {
+	details {
+		margin-bottom: 2px;
+
+		summary {
+			cursor: pointer;
+		}
+
+		.adapter__container {
+			margin-left: 10px;
+			display: flex;
+			flex-direction: column;
+			padding-top: 5px;
+			padding-left: 5px;
+			border-left: 2px solid var(--accent);
+
+			button {
+				margin-bottom: 5px;
+				cursor: pointer;
+				border: none;
+				background: none;
+				color: var(--txt);
+				text-align: left;
+				font-size: 1.005em;
+				
+				&:hover {
+					text-decoration: underline red;
+				}
+
+				&.selected {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
