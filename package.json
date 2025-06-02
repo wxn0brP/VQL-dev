@@ -1,7 +1,13 @@
 {
     "name": "@wxn0brp/vql-dev",
     "version": "0.0.1",
-    "main": "dist/index.js",
+    "main": "dist/back/index.js",
+    "types": "dist/back/index.d.ts",
+    "description": "VQL Dev Panel",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wxn0brP/VQL-dev.git"
+    },
     "author": "wxn0brP",
     "license": "MIT",
     "private": true,
@@ -29,5 +35,11 @@
         "@wxn0brp/flanker-ui": "github:wxn0brP/FlankerUi#dist",
         "@wxn0brp/gloves-link": "github:wxn0brP/GlovesLink#dist",
         "@wxn0brp/vql-client": "^0.0.2"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/back/index.d.ts",
+            "default": "./dist/back/index.js"
+        }
     }
 }
