@@ -18,7 +18,7 @@ A development panel for exploring and interacting with **VQL** (Valthera Query L
 ## Installation
 
 ```bash
-yarn add -D github:wxn0brP/vql-dev#dist
+yarn add -D github:wxn0brP/VQL-dev#dist
 ```
 
 ## Usage

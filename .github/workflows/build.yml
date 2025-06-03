@@ -18,4 +18,4 @@ jobs:
     uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
     with:
       scriptsHandling: "remove-all"
-      customScripts: "node build.js"
+      customCommands: "node build.js"
