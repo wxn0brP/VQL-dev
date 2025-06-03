@@ -1,0 +1,29 @@
+import VQLProcessor, { createValtheraAdapter, VQLConfig } from "@wxn0brp/vql";
+import { GateWarden } from "@wxn0brp/gate-warden";
+import { Valthera } from "@wxn0brp/db";
+import DevPanelBackend from "./back/index.js";
+const db = new Valthera("data/dev-db");
+const gw = new GateWarden("data/dev-auth");
+const api = createValtheraAdapter({
+    meta: {
+        type: "api",
+        version: "0.1.0",
+        description: "Test DB for VQL Dev Panel",
+    },
+    async getCollections() {
+        return ["collection1", "collection2", "collection3"];
+    },
+    async find(collection, search, context, options, findOpts) {
+        return [];
+    },
+});
+const processor = new VQLProcessor({
+    dev: db,
+    api,
+}, gw, new VQLConfig({
+    noCheckPermissions: true,
+    strictSelect: false
+}));
+const panel = new DevPanelBackend(processor, { port: 5000 });
+panel.start();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL3NyYy90ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sWUFBWSxFQUFFLEVBQUUscUJBQXFCLEVBQUUsU0FBUyxFQUFFLE1BQU0sY0FBYyxDQUFDO0FBQzlFLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxzQkFBc0IsQ0FBQztBQUNsRCxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sYUFBYSxDQUFDO0FBQ3ZDLE9BQU8sZUFBZSxNQUFNLFFBQVEsQ0FBQztBQUVyQyxNQUFNLEVBQUUsR0FBRyxJQUFJLFFBQVEsQ0FBQyxhQUFhLENBQUMsQ0FBQztBQUN2QyxNQUFNLEVBQUUsR0FBRyxJQUFJLFVBQVUsQ0FBQyxlQUFlLENBQUMsQ0FBQztBQUUzQyxNQUFNLEdBQUcsR0FBRyxxQkFBcUIsQ0FBQztJQUM5QixJQUFJLEVBQUU7UUFDRixJQUFJLEVBQUUsS0FBSztRQUNYLE9BQU8sRUFBRSxPQUFPO1FBQ2hCLFdBQVcsRUFBRSwyQkFBMkI7S0FDM0M7SUFDRCxLQUFLLENBQUMsY0FBYztRQUNoQixPQUFPLENBQUMsYUFBYSxFQUFFLGFBQWEsRUFBRSxhQUFhLENBQUMsQ0FBQztJQUN6RCxDQUFDO0lBQ0QsS0FBSyxDQUFDLElBQUksQ0FBQyxVQUFVLEVBQUUsTUFBTSxFQUFFLE9BQU8sRUFBRSxPQUFPLEVBQUUsUUFBUTtRQUNyRCxPQUFPLEVBQUUsQ0FBQztJQUNkLENBQUM7Q0FDSixDQUFDLENBQUM7QUFFSCxNQUFNLFNBQVMsR0FBRyxJQUFJLFlBQVksQ0FDOUI7SUFDSSxHQUFHLEVBQUUsRUFBRTtJQUNQLEdBQUc7Q0FDTixFQUNELEVBQUUsRUFDRixJQUFJLFNBQVMsQ0FBQztJQUNWLGtCQUFrQixFQUFFLElBQUk7SUFDeEIsWUFBWSxFQUFFLEtBQUs7Q0FDdEIsQ0FBQyxDQUNMLENBQUM7QUFFRixNQUFNLEtBQUssR0FBRyxJQUFJLGVBQWUsQ0FBQyxTQUFTLEVBQUUsRUFBRSxJQUFJLEVBQUUsSUFBSSxFQUFFLENBQUMsQ0FBQztBQUM3RCxLQUFLLENBQUMsS0FBSyxFQUFFLENBQUMifQ==

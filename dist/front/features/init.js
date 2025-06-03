@@ -1,0 +1,10 @@
+import adapterBodyView from "./adapterBody/adapterBody.view.js";
+import adaptersListView from "./adaptersList/adaptersList.view.js";
+import adapterMetaView from "./adapterBody/adapterMeta.view.js";
+const components = [
+    adaptersListView,
+    adapterBodyView,
+    adapterMetaView,
+];
+components.forEach((component) => component.mount());
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5pdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mcm9udC9mZWF0dXJlcy9pbml0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBLE9BQU8sZUFBZSxNQUFNLGdDQUFnQyxDQUFDO0FBQzdELE9BQU8sZ0JBQWdCLE1BQU0sa0NBQWtDLENBQUM7QUFDaEUsT0FBTyxlQUFlLE1BQU0sZ0NBQWdDLENBQUM7QUFFN0QsTUFBTSxVQUFVLEdBQWtCO0lBQzlCLGdCQUFnQjtJQUNoQixlQUFlO0lBQ2YsZUFBZTtDQUNsQixDQUFDO0FBRUYsVUFBVSxDQUFDLE9BQU8sQ0FBQyxDQUFDLFNBQVMsRUFBRSxFQUFFLENBQUMsU0FBUyxDQUFDLEtBQUssRUFBRSxDQUFDLENBQUMifQ==

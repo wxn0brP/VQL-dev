@@ -1,0 +1,6 @@
+import "@wxn0brp/flanker-ui/html";
+import { componentVars } from "@wxn0brp/flanker-ui";
+import { fetchVQL } from "@wxn0brp/vql-client";
+componentVars.fetchVQL = fetchVQL;
+await import("./features/init.js");
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvZnJvbnQvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTywwQkFBMEIsQ0FBQztBQUNsQyxPQUFPLEVBQUUsYUFBYSxFQUFFLE1BQU0scUJBQXFCLENBQUM7QUFDcEQsT0FBTyxFQUFFLFFBQVEsRUFBRSxNQUFNLHFCQUFxQixDQUFDO0FBQy9DLGFBQWEsQ0FBQyxRQUFRLEdBQUcsUUFBUSxDQUFDO0FBRWxDLE1BQU0sTUFBTSxDQUFDLGlCQUFpQixDQUFDLENBQUMifQ==
