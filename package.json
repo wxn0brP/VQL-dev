@@ -1,8 +1,8 @@
 {
     "name": "@wxn0brp/vql-dev",
     "version": "0.0.1",
-    "main": "dist/back/index.js",
-    "types": "dist/back/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "description": "VQL Dev Panel",
     "repository": {
         "type": "git",
@@ -32,14 +32,14 @@
     },
     "exports": {
         ".": {
-            "types": "./dist/back/index.d.ts",
-            "import": "./dist/back/index.js",
-            "default": "./dist/back/index.js"
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
         },
         "./*": {
-            "types": "./dist/back/*",
-            "import": "./dist/back/*",
-            "default": "./dist/back/*"
+            "types": "./dist/*",
+            "import": "./dist/*",
+            "default": "./dist/*"
         }
     }
 }
