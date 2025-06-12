@@ -1,5 +1,6 @@
 import { Valthera, ValtheraCompatible } from "@wxn0brp/db";
-import FalconFrame from "@wxn0brp/falcon-frame";
+import FalconFrame, { PluginSystem } from "@wxn0brp/falcon-frame";
+import { createCORSPlugin } from "@wxn0brp/falcon-frame/plugins/cors";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
 import { ValtheraResolverMeta } from "@wxn0brp/vql/apiAbstract";
 import { parseStringQuery } from "@wxn0brp/vql/cpu/string/index";
@@ -9,6 +10,8 @@ interface DevPanelOptions {
     port?: number;
     app?: FalconFrame;
     http?: Server;
+    origins?: string[];
+    pluginSystem?: PluginSystem;
 }
 
 function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMeta {
@@ -27,19 +30,32 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
 
 export class DevPanelBackend {
     private app: FalconFrame;
-    // private ws: GlovesLinkServer;
     private port: number;
     private processor: VQLProcessor;
     private http: Server;
+    private pluginSystem: PluginSystem;
+    private origins = [
+        "https://wxn0brp.github.io",
+    ];
 
     constructor(processor: VQLProcessor, options?: DevPanelOptions) {
         this.processor = processor;
         this.port = options?.port ?? 3000;
         this.app = options?.app ?? new FalconFrame();
         this.http = options?.http ?? null;
+        this.pluginSystem = options?.pluginSystem ?? new PluginSystem();
+
+        if (!options.app) {
+            this.app.use(this.pluginSystem.getRouteHandler());
+        }
+
+        if (options?.origins) {
+            this.origins = options.origins;
+        }
     }
 
     private setupHTTP() {
+        this.pluginSystem.register(createCORSPlugin(this.origins));
         FF_VQL(this.app, this.processor);
 
         this.app.post("/VQL/query-string", async (req, res) => {
@@ -85,23 +101,12 @@ export class DevPanelBackend {
         });
     }
 
-    // private setupWS() {
-    //     this.ws = new GlovesLinkServer({ server: this.http });
-
-    //     this.ws.onConnect((conn) => {
-    //         console.log("[DevPanelBackend] WS connected:", conn.id);
-    //     });
-
-    //     this.ws.falconFrame(this.app);
-    // }
-
     public start() {
         if (!this.http) this.http = this.app.listen(this.port, () => {
             console.log(`[DevPanelBackend] Running at http://localhost:${this.port}`);
         });
 
         this.setupHTTP();
-        // this.setupWS();
     }
 }
 

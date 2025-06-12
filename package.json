@@ -28,7 +28,7 @@
         "typescript": "^5.7.3"
     },
     "dependencies": {
-        "@wxn0brp/falcon-frame": "^0.0.6"
+        "@wxn0brp/falcon-frame": "^0.0.7"
     },
     "exports": {
         ".": {
