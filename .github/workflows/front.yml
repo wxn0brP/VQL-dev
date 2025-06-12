@@ -38,7 +38,6 @@ jobs:
 
       - name: Push to dist branch
         run: |
-          URL=$(git remote get-url origin)
           cd public
           git init
           git config user.name "GitHub Actions"
@@ -46,5 +45,5 @@ jobs:
           git checkout --orphan front
           git add .
           git commit -m "Build"
-          git remote add origin $URL
+          git remote add origin https://github.com/wxn0brP/VQL-dev.git
           git push --force origin front
