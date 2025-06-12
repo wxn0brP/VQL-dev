@@ -38,12 +38,13 @@ jobs:
 
       - name: Push to dist branch
         run: |
+          URL=$(git remote get-url origin)
           cd public
           git init
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          git checkout --orphan front
           git add .
           git commit -m "Build"
-          git checkout --orphan front
-          git remote add origin $(git remote get-url origin)
-          git push --force origin front:front
+          git remote add origin $URL
+          git push --force origin front
