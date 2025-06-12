@@ -40,13 +40,15 @@ jobs:
         run: |
           cd public
           git init
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
           git checkout --orphan front
           git add .
           git commit -m "Build"
-          git remote add origin "https://github.com/wxn0brP/VQL-dev.git"
+          
+          # Użyj GITHUB_TOKEN do uwierzytelnienia przez HTTPS
+          git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/wxn0brP/VQL-dev.git 
+          
           git push --force origin front
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
