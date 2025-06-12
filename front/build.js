@@ -3,9 +3,9 @@ import stylePlugin from "esbuild-style-plugin";
 
 esbuild.build({
     entryPoints: [
-        "src/front/index.ts"
+        "src/index.ts"
     ],
-    outdir: "dist/front-build",
+    outdir: "dist",
     format: "esm",
     target: "es2022",
     bundle: true,

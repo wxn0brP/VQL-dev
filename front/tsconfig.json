@@ -3,22 +3,21 @@
         "module": "ES2022",
         "target": "ES2022",
         "moduleResolution": "bundler",
-        "paths": {},
+        "paths": {
+            "#*": ["./src/*"],
+        },
         "esModuleInterop": true,
         "skipLibCheck": true,
         "outDir": "./dist",
-        "inlineSourceMap": false,
-        "removeComments": true,
-        "resolveJsonModule": true
+        "inlineSourceMap": true,
+        "types": [
+            "esbuild-style-plugin"
+        ]
     },
     "include": [
        "./src"
     ],
     "exclude": [
         "node_modules"
-    ],
-    "tsc-alias": {
-        "resolveFullPaths": true,
-        "verbose": false
-    }
+    ]
 }

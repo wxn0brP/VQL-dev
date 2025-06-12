@@ -1,17 +1,15 @@
-import { parseStringQuery } from "@wxn0brp/vql/cpu/string/index";
 import { Valthera, ValtheraCompatible } from "@wxn0brp/db";
 import FalconFrame from "@wxn0brp/falcon-frame";
-import { GlovesLinkServer } from "@wxn0brp/gloves-link/server";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
-import { Server } from "http";
 import { ValtheraResolverMeta } from "@wxn0brp/vql/apiAbstract";
+import { parseStringQuery } from "@wxn0brp/vql/cpu/string/index";
+import { Server } from "http";
 
 interface DevPanelOptions {
     port?: number;
     app?: FalconFrame;
+    http?: Server;
 }
-
-const cwd = import.meta.dirname + "/../../";
 
 function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMeta {
     const adapter: ValtheraResolverMeta = {
@@ -29,7 +27,7 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
 
 export class DevPanelBackend {
     private app: FalconFrame;
-    private ws: GlovesLinkServer;
+    // private ws: GlovesLinkServer;
     private port: number;
     private processor: VQLProcessor;
     private http: Server;
@@ -38,6 +36,7 @@ export class DevPanelBackend {
         this.processor = processor;
         this.port = options?.port ?? 3000;
         this.app = options?.app ?? new FalconFrame();
+        this.http = options?.http ?? null;
     }
 
     private setupHTTP() {
@@ -81,30 +80,28 @@ export class DevPanelBackend {
             }
         });
 
-        this.app.get("/", (req, res) => {
-            res.render(cwd + "public/index.html", {});
-        })
-        this.app.static("/", cwd + "public");
-        this.app.static("/js/", cwd + "dist/front-build");
-    }
-
-    private setupWS() {
-        this.ws = new GlovesLinkServer({ server: this.http });
-
-        this.ws.onConnect((conn) => {
-            console.log("[DevPanelBackend] WS connected:", conn.id);
+        this.app.get("/", () => {
+            return "Still running. Must've missed the shutdown memo.";
         });
-
-        this.ws.falconFrame(this.app);
     }
+
+    // private setupWS() {
+    //     this.ws = new GlovesLinkServer({ server: this.http });
+
+    //     this.ws.onConnect((conn) => {
+    //         console.log("[DevPanelBackend] WS connected:", conn.id);
+    //     });
+
+    //     this.ws.falconFrame(this.app);
+    // }
 
     public start() {
-        this.http = this.app.listen(this.port, () => {
+        if (!this.http) this.http = this.app.listen(this.port, () => {
             console.log(`[DevPanelBackend] Running at http://localhost:${this.port}`);
         });
 
         this.setupHTTP();
-        this.setupWS();
+        // this.setupWS();
     }
 }
 

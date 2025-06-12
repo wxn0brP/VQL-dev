@@ -1,0 +1,50 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "front/**"
+
+  workflow_dispatch:
+
+concurrency:
+  group: build-front
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install Dependencies
+        run: cd front && npm i
+
+      - name: Build
+        run: cd front && npm run build
+
+      - name: Prepare files
+        run: |
+          mv front/dist public
+
+      - name: Push to dist branch
+        run: |
+          URL=$(git remote get-url origin)
+          cd public
+          git init
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Build"
+          git branch -M front
+          git remote add origin "$URL"
+          git push --force origin front

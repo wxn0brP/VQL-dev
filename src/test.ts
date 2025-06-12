@@ -1,10 +1,8 @@
 import VQLProcessor, { createValtheraAdapter, VQLConfig } from "@wxn0brp/vql";
-import { GateWarden } from "@wxn0brp/gate-warden";
 import { Valthera } from "@wxn0brp/db";
-import DevPanelBackend from "./back";
+import DevPanelBackend from ".";
 
 const db = new Valthera("data/dev-db");
-const gw = new GateWarden("data/dev-auth");
 
 const api = createValtheraAdapter({
     meta: {
@@ -25,7 +23,7 @@ const processor = new VQLProcessor(
         dev: db,
         api,
     },
-    gw,
+    null,
     new VQLConfig({
         noCheckPermissions: true,
         strictSelect: false

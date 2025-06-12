@@ -6,6 +6,10 @@ on:
       - master
     tags:
       - "*"
+    paths:
+      - "package.json"
+      - "src/**"
+      - "tsconfig.json"
 
   workflow_dispatch:
 
@@ -18,4 +22,3 @@ jobs:
     uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
     with:
       scriptsHandling: "remove-all"
-      customCommands: "node build.js"

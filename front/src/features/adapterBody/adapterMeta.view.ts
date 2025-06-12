@@ -1,4 +1,4 @@
-import $store from "#/store";
+import $store from "#store";
 import { UiComponent } from "@wxn0brp/flanker-ui";
 import { AdaptersList_Entry } from "../adaptersList/types";
 

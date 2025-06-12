@@ -1,8 +1,9 @@
-import $store from "#/store";
+import $store from "#store";
 import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
+import { defaultFetchUrl } from "#init";
 import { adapterCollectionsView } from "./adapterCollections.view";
-import { AdaptersList_Entry } from "./types";
 import "./adapters-list.scss";
+import { AdaptersList_Entry } from "./types";
 
 class AdaptersListView implements UiComponent {
     element: HTMLDivElement;
@@ -22,7 +23,6 @@ class AdaptersListView implements UiComponent {
             detail.appendChild(container);
 
             const collections = adapterCollectionsView(container, adapter.logic_id);
-            collections.mount();
             
             summary.addEventListener("click", async () => {
                 $store.selectedAdapter.set(adapter.logic_id);
@@ -49,7 +49,7 @@ class AdaptersListView implements UiComponent {
     }
 
     async load() {
-        const adapters = await fetch("/VQL/get-adapters").then((res) => res.json());
+        const adapters = await fetch(defaultFetchUrl+"/VQL/get-adapters").then((res) => res.json());
         $store.adapters.set(adapters);
         this.render(adapters);
     }
