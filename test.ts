@@ -1,6 +1,6 @@
 import VQLProcessor, { createValtheraAdapter, VQLConfig } from "@wxn0brp/vql";
 import { Valthera } from "@wxn0brp/db";
-import DevPanelBackend from ".";
+import DevPanelBackend from "./src";
 
 const db = new Valthera("data/dev-db");
 
@@ -23,7 +23,7 @@ const processor = new VQLProcessor(
         dev: db,
         api,
     },
-    null,
+    null as any,
     new VQLConfig({
         noCheckPermissions: true,
         strictSelect: false

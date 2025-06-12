@@ -14,7 +14,7 @@
     "type": "module",
     "scripts": {
         "build": "tsc && tsc-alias",
-        "test": "node dist/test.js"
+        "test": "bun run test.ts"
     },
     "peerDependencies": {
         "@wxn0brp/db": ">=0.9.0",
