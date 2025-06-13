@@ -14,13 +14,21 @@ interface DevPanelOptions {
     pluginSystem?: PluginSystem;
 }
 
+function isValtheraInstance(db: any): db is Valthera {
+    return (
+        typeof db?.dbAction === "object" &&
+        typeof db?.executor === "object" &&
+        !("meta" in db)
+    );
+}
+
 function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMeta {
     const adapter: ValtheraResolverMeta = {
         logic_id: id,
         type: "unknown",
         version: "0.0.0",
     }
-    if (db instanceof Valthera) {
+    if (db instanceof Valthera || isValtheraInstance(db)) {
         adapter.type = "valthera";
         if (db.version) adapter.version = db.version;
     } else if ("meta" in db) {
