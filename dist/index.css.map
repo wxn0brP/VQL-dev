@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["temp_stylePlugin:src/features/adapterBody/adapter.scss", "temp_stylePlugin:src/features/adaptersList/adapters-list.scss"],
+  "sourcesContent": ["#adapter-body{padding:5px;width:100%}#adapter-structure{margin-top:5px}", "#adapters-list details{margin-bottom:2px}#adapters-list details summary{cursor:pointer}#adapters-list details .adapter__container{margin-left:10px;display:flex;flex-direction:column;padding-top:5px;padding-left:5px;border-left:2px solid var(--accent)}#adapters-list details .adapter__container button{margin-bottom:5px;cursor:pointer;border:none;background:none;color:var(--txt);text-align:left;font-size:1.005em}#adapters-list details .adapter__container button:hover{text-decoration:underline red}#adapters-list details .adapter__container button.selected{text-decoration:underline}"],
+  "mappings": "AAAA,CAAC,aAAD,QAAsB,IAAI,MAAM,IAAI,CAAC,CAAC,kBAAkB,WAAW,GAAG,CCAtE,CAAC,cAAc,QAAQ,cAAc,GAAG,CAAC,CAAxC,cAAuD,QAAQ,QAAQ,OAAO,OAAO,CAAC,CAAtF,cAAqG,QAAQ,CAAC,mBAAmB,YAAY,KAAK,QAAQ,KAAK,eAAe,OAAO,YAAY,IAAI,aAAa,IAAI,YAAY,IAAI,MAAM,IAAI,SAAS,CAAC,CAA1P,cAAyQ,QAAQ,CAAnK,mBAAuL,OAAO,cAAc,IAAI,OAAO,QAAQ,OAAO,KAAK,WAAW,KAAK,MAAM,IAAI,OAAO,WAAW,KAAK,UAAU,OAAO,CAAC,CAA5Z,cAA2a,QAAQ,CAArU,mBAAyV,MAAM,OAAO,gBAAgB,UAAU,GAAG,CAAC,CAAlf,cAAigB,QAAQ,CAA3Z,mBAA+a,MAAM,CAAC,SAAS,gBAAgB,SAAS",
+  "names": []
+}

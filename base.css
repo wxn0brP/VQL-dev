@@ -1,0 +1,8 @@
+.btn {
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    background: none;
+    color: var(--txt);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
