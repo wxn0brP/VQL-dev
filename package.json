@@ -17,12 +17,12 @@
         "test": "bun run test.ts"
     },
     "peerDependencies": {
-        "@wxn0brp/db": ">=0.9.0",
+        "@wxn0brp/db": ">=0.9.1",
         "@wxn0brp/vql": ">=0.3.9"
     },
     "devDependencies": {
         "@types/node": "^24.0.1",
-        "@wxn0brp/db": "^0.9.0",
+        "@wxn0brp/db": "^0.9.1",
         "@wxn0brp/vql": "^0.3.9",
         "tsc-alias": "^1.8.10",
         "typescript": "^5.7.3"

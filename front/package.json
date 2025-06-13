@@ -16,8 +16,8 @@
         "typescript": "^5.7.3"
     },
     "dependencies": {
-        "@wxn0brp/flanker-ui": "github:wxn0brP/FlankerUi#dist-v0.1.1",
-        "@wxn0brp/vql-client": "^0.0.3",
+        "@wxn0brp/flanker-ui": "github:wxn0brP/FlankerUi#dist-v0.2.0",
+        "@wxn0brp/vql-client": "^0.0.6",
         "esbuild": "^0.25.5",
         "esbuild-style-plugin": "^1.6.3",
         "sass": "^1.89.2"

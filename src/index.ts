@@ -22,6 +22,7 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
     }
     if (db instanceof Valthera) {
         adapter.type = "valthera";
+        if (db.version) adapter.version = db.version;
     } else if ("meta" in db) {
         Object.assign(adapter, db.meta);
     }
