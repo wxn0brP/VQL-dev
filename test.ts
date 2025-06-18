@@ -30,5 +30,8 @@ const processor = new VQLProcessor(
     })
 );
 
-const panel = new DevPanelBackend(processor, { port: 5000 });
+const panel = new DevPanelBackend(processor, {
+    port: 5000,
+    origins: "*",
+});
 panel.start();

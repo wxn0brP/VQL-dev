@@ -10,7 +10,7 @@ interface DevPanelOptions {
     port?: number;
     app?: FalconFrame;
     http?: Server;
-    origins?: string[];
+    origins?: string[] | string;
     pluginSystem?: PluginSystem;
 }
 
@@ -59,7 +59,7 @@ export class DevPanelBackend {
         }
 
         if (options?.origins) {
-            this.origins = options.origins;
+            this.origins = [options.origins].flat();
         }
     }
 
