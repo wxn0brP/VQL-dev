@@ -4,6 +4,7 @@ import { defaultFetchUrl } from "#init";
 import { adapterCollectionsView } from "./adapterCollections.view";
 import "./adapters-list.scss";
 import { AdaptersList_Entry } from "./types";
+import { setDbList } from "#features/monaco/monaco.types";
 
 class AdaptersListView implements UiComponent {
     element: HTMLDivElement;
@@ -39,11 +40,17 @@ class AdaptersListView implements UiComponent {
         uiHelpers.bindHandlers(this.element, {
             "#adapters-header": () => this.load(),
         });
+        
         $store.selectedCollection.subscribe(collection => {
             this.element.querySelectorAll("[data-collection]").forEach((button) => {
                 button.classList.toggle("selected", button.getAttribute("data-collection") === collection);
             })
         })
+
+        $store.adapters.subscribe(adapters => {
+            const names = adapters.map((adapter) => adapter.logic_id);
+            setDbList(names);
+        });
 
         this.load();
     }

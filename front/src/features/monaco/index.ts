@@ -1,0 +1,61 @@
+import { fetchVQL } from "@wxn0brp/vql-client";
+import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
+import "./monaco.scss";
+
+(self as any).MonacoEnvironment = {
+    getWorkerUrl: function (moduleId: string, label: string) {
+        if (label === "json") {
+            return "./dist/vs/language/json/json.worker.js";
+        }
+        if (label === "css" || label === "scss" || label === "less") {
+            return "./dist/vs/language/css/css.worker.js";
+        }
+        if (label === "html" || label === "handlebars" || label === "razor") {
+            return "./dist/vs/language/html/html.worker.js";
+        }
+        if (label === "typescript" || label === "javascript") {
+            return "./dist/vs/language/typescript/ts.worker.js";
+        }
+        return "./dist/vs/editor/editor.worker.js";
+    }
+}
+
+const container = document.querySelector("#editor");
+let editor = monaco.editor.create(container, {
+    value: ``,
+    language: "typescript",
+    theme: "vs-dark",
+    automaticLayout: true,
+    lineNumbersMinChars: 2,
+    minimap: { enabled: false }
+});
+VQL_reset(false);
+
+export default editor;
+export { monaco };
+
+export async function VQL_run() {
+    const codeOriginal = editor.getValue();
+    let code = codeOriginal.replace("const q: VQLR =", "");
+
+    const end = code.indexOf("};");
+    if (end !== -1) code = code.substring(0, end+1);
+
+    const query = eval(`(${code})`);
+    const result = await fetchVQL(query);
+
+    console.log(result);
+
+    const newCode = codeOriginal + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
+    editor.setValue(newCode);
+}
+
+export function VQL_reset(ask = true) {
+    if (ask) {
+        if (!window.confirm("Reset query?")) return;
+    }
+    editor.setValue(`const q: VQLR = {\n\t\n};`);
+}
+
+document.querySelector("#eb-run").addEventListener("click", VQL_run);
+document.querySelector("#eb-reset").addEventListener("click", () => VQL_reset());

@@ -10,3 +10,5 @@ const components: UiComponent[] = [
 ];
 
 components.forEach((component) => component.mount());
+
+await import("./monaco");

@@ -1,0 +1,26 @@
+#editor {
+    width: 100%;
+    height: 100vh;
+}
+
+#editor-buttons {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--border);
+
+    font-size: large;
+    display: flex;
+    gap: 1rem;
+
+    button {
+        border: 1px solid var(--accent);
+        background: var(--back);
+        cursor: pointer;
+        color: var(--txt);
+        padding: 7px 10px;
+        border-radius: 5px;
+    }
+}

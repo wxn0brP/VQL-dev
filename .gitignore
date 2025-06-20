@@ -1,6 +1,9 @@
+node_modules
+.vscode
+
 data
 dist
-node_modules
+
 .suglite_history
 yarn.lock
 package-lock.json

@@ -17,9 +17,11 @@
     },
     "dependencies": {
         "@wxn0brp/flanker-ui": "github:wxn0brP/FlankerUi#dist-v0.2.0",
+        "@wxn0brp/vql": "github:wxn0brP/VQL#types",
         "@wxn0brp/vql-client": "^0.0.6",
         "esbuild": "^0.25.5",
         "esbuild-style-plugin": "^1.6.3",
+        "monaco-editor": "^0.52.2",
         "sass": "^1.89.2"
     }
 }
