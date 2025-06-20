@@ -34,19 +34,22 @@ VQL_reset(false);
 export default editor;
 export { monaco };
 
-export async function VQL_run() {
-    const codeOriginal = editor.getValue();
-    let code = codeOriginal.replace("const q: VQLR =", "");
-
+export function getQuery() {
+    let code = editor.getValue();
+    code = code.replace("const q: VQLR =", "");
     const end = code.indexOf("};");
     if (end !== -1) code = code.substring(0, end+1);
-
     const query = eval(`(${code})`);
+    return query;
+}
+
+export async function VQL_run() {
+    const query = getQuery();
     const result = await fetchVQL(query);
 
     console.log(result);
 
-    const newCode = codeOriginal + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
+    const newCode = editor.getValue() + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
     editor.setValue(newCode);
 }
 
