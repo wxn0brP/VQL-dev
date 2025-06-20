@@ -46,6 +46,6 @@ esbuild.build({
 		".ttf": "file",
         ".ts": "ts"
 	}
-}).catch(() => process.exit(1));
-
-copyFileSync("./node_modules/@wxn0brp/vql/vql.d.ts", "./dist/vql.d.ts");
+}).catch(() => process.exit(1)).then(() => {
+    copyFileSync("./node_modules/@wxn0brp/vql/vql.d.ts", "./dist/vql.d.ts");
+});
