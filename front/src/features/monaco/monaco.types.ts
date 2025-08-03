@@ -1,7 +1,7 @@
 import $store from "#store";
-import { fetchVQL } from "@wxn0brp/vql-client";
-import { getQuery, monaco } from ".";
 import { VQLR } from "@wxn0brp/vql-client/vql";
+import { getQuery, monaco } from ".";
+import { apiService } from "#services";
 
 export function setTsType(file: string, content: string) {
     content = content
@@ -48,7 +48,7 @@ export async function loadAllCollections() {
 
     const adapters = $store.adapters.get();
     for (const adapter of adapters) {
-        const collections = await fetchVQL(`${adapter.logic_id} getCollections`);
+        const collections = await apiService.fetchVQL(`${adapter.logic_id} getCollections`);
 
         for (const collection of collections) {
             relationPaths.push([adapter.logic_id, collection]);

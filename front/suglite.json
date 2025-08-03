@@ -1,5 +1,5 @@
 {
-    "cmd": "tsc && yarn build",
+    "cmd": "tsc && yarn build --dev",
     "watch": [
         "src"
     ],

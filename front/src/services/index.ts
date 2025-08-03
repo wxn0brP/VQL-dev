@@ -1,5 +1,10 @@
-import { AdapterService } from "./adapter.service";
-import { ApiService } from "./api.service";
+import { defaultFetchUrl } from "#init";
+import { IService } from "./types";
 
-export const apiService = new ApiService();
-export const adapterService = new AdapterService();
+export let apiService: IService = null;
+
+if (defaultFetchUrl === "web") {
+    apiService = (await import("./client.service")).default;
+} else {
+    apiService = (await import("./fetch.service")).default;
+}

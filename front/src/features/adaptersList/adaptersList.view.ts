@@ -4,7 +4,7 @@ import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
 import { adapterCollectionsView } from "./adapterCollections.view";
 import "./adapters-list.scss";
 import { AdaptersList_Entry } from "./types";
-import { adapterService } from "#services";
+import { apiService } from "#services";
 
 class AdaptersListView implements UiComponent {
     element: HTMLDivElement;
@@ -56,7 +56,7 @@ class AdaptersListView implements UiComponent {
     }
 
     async load() {
-        const adapters = await adapterService.getAdapters();
+        const adapters = await apiService.getAdapters();
         $store.adapters.set(adapters);
         this.render(adapters);
     }

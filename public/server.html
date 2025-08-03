@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VQL Dev Tool</title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wxn0brP/ValtheraDB/refs/heads/main/logo.svg"
+        type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="view.css">
+    <style>
+        body {
+            padding: 5px;
+        }
+        textarea {
+            width: 90%;
+            height: 300px;
+            cursor: text !important;
+        }
+        div {
+            height: 2rem;
+        }
+        ul {
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="importmap">
+    {
+        "imports": {
+            "js-yaml": "https://esm.sh/js-yaml",
+            "json5": "https://esm.sh/json5",
+            "ajv": "https://esm.sh/ajv",
+            "ajv-formats": "https://esm.sh/ajv-formats",
+            "@wxn0brp/db-core": "https://esm.sh/@wxn0brp/db-core",
+            "@wxn0brp/db-core/": "https://esm.sh/@wxn0brp/db-core/",
+            "@wxn0brp/vql": "https://cdn.jsdelivr.net/gh/wxn0brP/VQL@browser/browser/index.js",
+            "crypto": "https://cdn.jsdelivr.net/gh/wxn0brP/VQL@browser/browser/crypto.js",
+            "fs": "https://cdn.jsdelivr.net/gh/wxn0brP/VQL@browser/browser/fs.js"
+        }
+    }
+    </script>
+
+    <h2>Config</h2>
+    <p>Schema:</p>
+    <p>db-name http://db-name:db-auth@server-url</p>
+    <br>
+    <textarea class="btn"></textarea>
+    <div></div>
+    <button class="btn">Save</button>
+    <div></div>
+
+    <h2>Active databases</h2>
+    <ul></ul>
+
+    <script type="module" src="./dist/server/index.js"></script>
+</body>
+
+</html>
