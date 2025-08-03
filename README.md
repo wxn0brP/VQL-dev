@@ -78,7 +78,7 @@ cd public
 python3 -m http.server
 ```
 
-Then open your browser at: [http://localhost:8000](http.localhost:8000)
+Then open your browser at: [http://localhost:8000](http://localhost:8000)
 
 > You can also use any other static HTTP server like `vite`, `serve`, or `nginx`.
 
