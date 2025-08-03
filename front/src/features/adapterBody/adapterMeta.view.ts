@@ -1,6 +1,6 @@
+import { AdaptersList_Entry } from "#features/adaptersList/types";
 import $store from "#store";
 import { UiComponent } from "@wxn0brp/flanker-ui";
-import { AdaptersList_Entry } from "../adaptersList/types";
 
 class AdapterMetaView implements UiComponent {
     element: HTMLDivElement;

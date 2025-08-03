@@ -63,7 +63,7 @@ export async function loadAllCollections() {
 $store.adapters.subscribe(loadAllCollections);
 loadAllCollections();
 
-document.querySelector<HTMLDivElement>("#editor").addEventListener("keyup", (e) => {
+qs("#editor").addEventListener("keyup", (e) => {
     try {
         const query = getQuery() as VQLR;
         setTsType("collectionList", `declare type V_CollectionList = ${"db" in query ? `V_CollectionList_${query.db}` : ""};`);

@@ -39,7 +39,7 @@ export function getQuery() {
     code = code.replace("const q: VQLR =", "");
     const end = code.indexOf("};");
     if (end !== -1) code = code.substring(0, end+1);
-    const query = eval(`(${code})`);
+    const query = new Function("return " + code)();
     return query;
 }
 
@@ -60,5 +60,5 @@ export function VQL_reset(ask = true) {
     editor.setValue(`const q: VQLR = {\n\t\n};`);
 }
 
-document.querySelector("#eb-run").addEventListener("click", VQL_run);
-document.querySelector("#eb-reset").addEventListener("click", () => VQL_reset());
+qs("#eb-run").on("click", VQL_run);
+qs("#eb-reset").on("click", () => VQL_reset());

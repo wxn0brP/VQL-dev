@@ -1,10 +1,10 @@
+import { setDbList } from "#features/monaco/monaco.types";
+import { defaultFetchUrl } from "#init";
 import $store from "#store";
 import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
-import { defaultFetchUrl } from "#init";
 import { adapterCollectionsView } from "./adapterCollections.view";
 import "./adapters-list.scss";
 import { AdaptersList_Entry } from "./types";
-import { setDbList } from "#features/monaco/monaco.types";
 
 class AdaptersListView implements UiComponent {
     element: HTMLDivElement;

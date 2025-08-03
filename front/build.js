@@ -47,5 +47,5 @@ esbuild.build({
         ".ts": "ts"
 	}
 }).catch(() => process.exit(1)).then(() => {
-    copyFileSync("./node_modules/@wxn0brp/vql/vql.d.ts", "./dist/vql.d.ts");
+    copyFileSync("./node_modules/@wxn0brp/vql-client/dist/vql.d.ts", "./dist/vql.d.ts");
 });
