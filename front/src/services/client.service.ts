@@ -51,12 +51,6 @@ class ChannelClient {
 
 const client = new ChannelClient();
 
-const adapters = await client.getAdapters();
-console.log("Adapters:", adapters);
-
-const result = await client.vql("test getCollections");
-console.log("VQL result:", result);
-
 const clientService: IService = {
     fetchVQL(query: string): Promise<any> {
         return client.vql(query);
