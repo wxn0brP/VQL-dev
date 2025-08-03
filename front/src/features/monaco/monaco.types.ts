@@ -48,8 +48,8 @@ export async function loadAllCollections() {
 
     const adapters = $store.adapters.get();
     for (const adapter of adapters) {
-        const collections = await fetchVQL(`${adapter.logic_id} getCollections`); 
-        
+        const collections = await fetchVQL(`${adapter.logic_id} getCollections`);
+
         for (const collection of collections) {
             relationPaths.push([adapter.logic_id, collection]);
         }

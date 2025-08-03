@@ -1,6 +1,6 @@
-import { fetchVQL } from "@wxn0brp/vql-client";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 import "./monaco.scss";
+import { apiService } from "#services";
 
 (self as any).MonacoEnvironment = {
     getWorkerUrl: function (moduleId: string, label: string) {
@@ -45,7 +45,7 @@ export function getQuery() {
 
 export async function VQL_run() {
     const query = getQuery();
-    const result = await fetchVQL(query);
+    const result = await apiService.fetchVQL(query);
 
     console.log(result);
 

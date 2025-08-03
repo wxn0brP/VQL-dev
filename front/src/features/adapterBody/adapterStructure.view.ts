@@ -1,11 +1,12 @@
 import { mountView } from "@wxn0brp/flanker-ui";
 import $store from "#store";
 import { formatUnifiedTypes } from "./helpers";
+import { apiService } from "#services";
 
 export const adapterStructureView = () => mountView({
     selector: "#adapter-structure-content",
-    query: async (data: { limit: number }) => {
-        return {
+    queryFunction: async (data: { limit: number }) => {
+        return apiService.fetchVQL({
             db: $store.selectedAdapter.get(),
             d: {
                 find: {
@@ -14,7 +15,7 @@ export const adapterStructureView = () => mountView({
                     options: { max: data.limit || 10 }
                 }
             }
-        }
+        });
     },
     template: (item) => `<div><b>${item[0]}:</b> <span>${item[1]}</span></div>`,
     transform: (data) => Object.entries(formatUnifiedTypes(data, true))

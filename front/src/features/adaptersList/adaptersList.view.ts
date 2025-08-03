@@ -1,10 +1,10 @@
 import { setDbList } from "#features/monaco/monaco.types";
-import { defaultFetchUrl } from "#init";
 import $store from "#store";
 import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
 import { adapterCollectionsView } from "./adapterCollections.view";
 import "./adapters-list.scss";
 import { AdaptersList_Entry } from "./types";
+import { adapterService } from "#services";
 
 class AdaptersListView implements UiComponent {
     element: HTMLDivElement;
@@ -56,7 +56,7 @@ class AdaptersListView implements UiComponent {
     }
 
     async load() {
-        const adapters = await fetch(defaultFetchUrl+"/VQL/get-adapters").then((res) => res.json());
+        const adapters = await adapterService.getAdapters();
         $store.adapters.set(adapters);
         this.render(adapters);
     }
