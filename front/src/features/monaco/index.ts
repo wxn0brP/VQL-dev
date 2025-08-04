@@ -1,3 +1,4 @@
+import { adapterResultView } from "#features/adapterBody/adapterResult.view";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 import "./monaco.scss";
 import { apiService } from "#services";
@@ -22,7 +23,7 @@ import { apiService } from "#services";
 
 const container = document.querySelector("#editor");
 let editor = monaco.editor.create(container, {
-    value: ``,
+    value: ``, 
     language: "typescript",
     theme: "vs-dark",
     automaticLayout: true,
@@ -45,9 +46,15 @@ export function getQuery() {
 
 export async function VQL_run() {
     const query = getQuery();
+    console.log(query);
     const result = await apiService.fetchVQL(query);
-
     console.log(result);
+
+    if (query?.d?.find || query?.d?.findOne) {
+        adapterResultView.render(result);
+    } else {
+        adapterResultView.clear();
+    }
 
     const newCode = editor.getValue() + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
     editor.setValue(newCode);
@@ -57,6 +64,7 @@ export function VQL_reset(ask = true) {
     if (ask) {
         if (!window.confirm("Reset query?")) return;
     }
+    adapterResultView.clear();
     editor.setValue(`const q: VQLR = {\n\t\n};`);
 }
 

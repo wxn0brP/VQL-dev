@@ -1,6 +1,7 @@
 import $store from "#store";
 import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
 import "./adapter.scss";
+import { adapterResultView } from "./adapterResult.view";
 import { adapterStructureView } from "./adapterStructure.view";
 
 class AdapterBodyView implements UiComponent {
@@ -12,6 +13,7 @@ class AdapterBodyView implements UiComponent {
     mount() {
         this.element = document.querySelector("#adapter-body");
         this.adapterStructure = adapterStructureView();
+        adapterResultView.mount();
 
         $store.selectedCollection.subscribe(() => this.adapterStructure.load());
         uiHelpers.storeHide(this.element.querySelector("#adapter-structure"), $store.selectedCollection);
