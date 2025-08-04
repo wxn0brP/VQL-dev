@@ -16,3 +16,17 @@ body {
     color: var(--txt);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+main {
+    display: flex;
+    overflow-y: hidden;
+}
+
+.btn {
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    background: none;
+    color: var(--txt);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}

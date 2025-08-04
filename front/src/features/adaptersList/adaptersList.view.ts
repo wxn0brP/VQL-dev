@@ -53,6 +53,9 @@ class AdaptersListView implements UiComponent {
         });
 
         this.load();
+
+        const nav = qs("nav");
+        qs("#toggle-sidebar").on("click", () => nav.clT("hidden"));
     }
 
     async load() {

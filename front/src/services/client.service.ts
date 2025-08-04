@@ -12,6 +12,7 @@ class ChannelClient {
 
     private handleMessage(e: MessageEvent) {
         const { type, data } = e.data;
+        console.log(type, data);
 
         if (type.startsWith("vql-")) {
             const id = type.slice(4);

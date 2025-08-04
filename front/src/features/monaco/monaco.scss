@@ -1,4 +1,7 @@
 #editor {
+    --w: 700px;
+    min-width: var(--w);
+    max-width: var(--w);
     width: 100%;
     height: 100vh;
 }

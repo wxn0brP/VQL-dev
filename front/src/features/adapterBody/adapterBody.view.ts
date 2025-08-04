@@ -15,7 +15,24 @@ class AdapterBodyView implements UiComponent {
 
         $store.selectedCollection.subscribe(() => this.adapterStructure.load());
         uiHelpers.storeHide(this.element.querySelector("#adapter-structure"), $store.selectedCollection);
+
+        setUpResize();
     }
+}
+
+function setUpResize() {
+    const editor = qs("#editor");
+    const resize = qs("#resize");
+
+    let isResizing = false;
+    resize.addEventListener("mousedown", () => isResizing = true);
+    document.addEventListener("mouseup", () => isResizing = false);
+
+    document.addEventListener("mousemove", (e) => {
+        if (!isResizing) return;
+        const px = window.innerWidth - e.clientX;
+        editor.style.setProperty("--w", px + "px");
+    });
 }
 
 const adapterBodyView = new AdapterBodyView();

@@ -1,9 +1,32 @@
 #adapter-body {
     padding: 5px;
-    width: 100%;
+    flex: 1;
+    position: relative;
 }
 
 #adapter-structure {
-    margin-top: 5px;
-    
+    margin-top: 5px;  
+}
+
+#toggle-sidebar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--txt);
+    font-size: large;
+}
+
+#resize {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: ew-resize;
+    color: var(--txt);
+    font-size: large;
+    user-select: none;
 }
