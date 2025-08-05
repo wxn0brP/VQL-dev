@@ -30,7 +30,7 @@ class QueryHistoryView implements UiComponent {
 
     render() {
         this.element.innerHTML = "";
-        const history = $store.history.get();
+        const history = $store.history.get().toReversed();
         for (const query of history) {
             const item = document.createElement("pre");
             item.classList.add("query-history-item");
