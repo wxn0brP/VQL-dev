@@ -39,6 +39,15 @@
             white-space: pre-wrap;
             word-break: break-all;
         }
+
+        .edit-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+            border: 1px solid var(--accent);
+            background-color: var(--back);
+            color: var(--txt);
+        }
     }
 }
 
