@@ -3,9 +3,10 @@
         padding: 5px;
         cursor: pointer;
         border-bottom: 1px solid var(--border);
+        transition: opacity 0.2s ease-in-out;
 
         &:hover {
-            text-decoration: underline red;
+            opacity: 0.8;
         }
     }
 }
