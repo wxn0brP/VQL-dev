@@ -17,6 +17,14 @@
             height: 300px;
             cursor: text !important;
         }
+        input {
+            width: 200px;
+            cursor: text !important;
+        }
+        label {
+            margin-bottom: 5px;
+            display: block;
+        }
         div {
             height: 2rem;
         }
@@ -45,6 +53,30 @@
     <div></div>
     <button class="btn" id="run">Run</button>
     <button class="btn" id="save">Save in localStorage</button>
+    <div></div>
+
+    <h2>Edit Config</h2>
+    <form>
+        <label>
+            Alias:
+            <select id="alias-select" class="btn" style="margin-right: 3px;"></select>
+            <input id="alias" class="btn">
+        </label>
+        <label>
+            Name:
+            <input id="name" class="btn">
+        </label>
+        <label>
+            Auth:
+            <input id="auth" class="btn" style="width: 70%;">
+        </label>
+        <label>
+            URL:
+            <input id="url" class="btn">
+        </label>
+        <button class="btn" type="submit">Edit</button>
+        <button class="btn" type="reset">Reset</button>
+    </form>
     <div></div>
 
     <h2>Active databases</h2>

@@ -1,6 +1,7 @@
 import { ValtheraRemote } from "@wxn0brp/db-client";
 import { textarea, ul } from "./html";
 import { VQL } from "./vql";
+import { buildSelect } from "./form";
 
 type Config = Record<string, string>;
 export let cfg: Config = {};
@@ -58,4 +59,5 @@ export async function doConfig() {
         li.textContent = `${key}: ${ok ? "OK" : "ERR"}`;
         ul.appendChild(li);
     });
+    buildSelect();
 }
