@@ -37,9 +37,15 @@ export { monaco };
 
 export function getQuery() {
     let code = editor.getValue();
-    code = code.replace("const q: VQLR =", "");
-    const end = code.indexOf("};");
-    if (end !== -1) code = code.substring(0, end + 1);
+
+    const start = code.indexOf("=");
+    if (start === -1) alert("Invalid query. Must start with `... =`");
+    
+    const end = code.indexOf(";;");
+    if (end === -1) alert("Invalid query. Must end with `;;`");
+
+    code = code.substring(start + 1, end);
+
     const query = new Function("return " + code)();
     return query;
 }
@@ -55,11 +61,12 @@ export async function VQL_run() {
         adapterResultView.render(result, query.db, op.collection);
     }
     else if (query?.r) 
-        adapterResultView.render(result, "r/" + query.r.path[0], query.r.path[1]);
-    else 
+        adapterResultView.render(result, "r//" + query.r.path[0], query.r.path[1]);
+    else if (typeof query === "string" && typeof result === "object")
+        adapterResultView.render(result, "qs/", query);
+    else
         adapterResultView.clear();
     
-
     const newCode = editor.getValue() + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
     editor.setValue(newCode);
 }
@@ -69,7 +76,7 @@ export function VQL_reset(ask = true) {
         if (!window.confirm("Reset query?")) return;
     }
     adapterResultView.clear();
-    editor.setValue(`const q: VQLR = {\n\t\n};`);
+    editor.setValue(`q = {\n\t\n};;`);
 }
 
 qs("#eb-run").on("click", VQL_run);

@@ -21,6 +21,10 @@ fetch("./dist/vql.d.ts").then((res) => res.text()).then((content) => {
     setTsType("raw", content);
 });
 
+export function escapeAdapterId(id: string) {
+    return id.replace(/[^a-zA-Z0-9_]/g, "_");
+}
+
 function mapCollection(collection: string[]) {
     return collection.map((item) => `"${item}"`).join(" | ");
 }
@@ -30,6 +34,7 @@ export function setDbList(dbs: string[]) {
 }
 
 setTsType("collectionList", `declare type V_CollectionList = "";`);
+setTsType("query", `declare var q: VqlQueryRaw;`);
 
 export function setRelationPaths(data: [string, string][]) {
     const mapped = data.map(([db, collection]) => `["${db}","${collection}"]`).join(" | ");
@@ -37,6 +42,7 @@ export function setRelationPaths(data: [string, string][]) {
 }
 
 export function setTsCollectionList(adapterId: string, collections: string[]) {
+    adapterId = escapeAdapterId(adapterId);
     setTsType(`collections_${adapterId}`, `declare type V_CollectionList_${adapterId} = ${mapCollection(collections)};`);
 }
 
@@ -66,6 +72,8 @@ loadAllCollections();
 qs("#editor").addEventListener("keyup", (e) => {
     try {
         const query = getQuery() as VQLR;
-        setTsType("collectionList", `declare type V_CollectionList = ${"db" in query ? `V_CollectionList_${query.db}` : ""};`);
+        const prefix = "declare type V_CollectionList = ";
+        const statement = "db" in query ? `V_CollectionList_${escapeAdapterId(query.db)}` : "";
+        setTsType("collectionList", prefix + statement);
     } catch {}
 });
