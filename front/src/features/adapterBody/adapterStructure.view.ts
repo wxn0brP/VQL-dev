@@ -2,6 +2,7 @@ import { mountView } from "@wxn0brp/flanker-ui";
 import $store from "#store";
 import { formatUnifiedTypes } from "./helpers";
 import { apiService } from "#services";
+import { adapterResultView } from "./adapterResult.view";
 
 export const adapterStructureView = () => mountView({
     selector: "#adapter-structure-content",
@@ -18,5 +19,8 @@ export const adapterStructureView = () => mountView({
         });
     },
     template: (item) => `<div><b>${item[0]}:</b> <span>${item[1]}</span></div>`,
-    transform: (data) => Object.entries(formatUnifiedTypes(data, true))
+    transform: (data) => Object.entries(formatUnifiedTypes(data, true)),
+    onData(data) {
+        adapterResultView.render(data);
+    },
 });

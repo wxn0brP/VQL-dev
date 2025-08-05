@@ -32,7 +32,7 @@ function setUpResize() {
 
     document.addEventListener("mousemove", (e) => {
         if (!isResizing) return;
-        const px = window.innerWidth - e.clientX;
+        const px = Math.min(window.innerWidth - e.clientX, window.innerWidth / 2);
         editor.style.setProperty("--w", px + "px");
     });
 }

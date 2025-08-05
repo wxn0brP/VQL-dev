@@ -7,7 +7,7 @@ function getAdapterMeta(id: string, db: ValtheraRemote) {
     const adapter = {
         logic_id: id,
         type: "valthera",
-        version: db.version,
+        version: db.version + "-client.0",
     }
     return adapter;
 }

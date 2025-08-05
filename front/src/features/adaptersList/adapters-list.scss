@@ -1,9 +1,12 @@
 #adapters-list {
 	details {
-		margin-bottom: 2px;
+		margin-bottom: 9px;
 
 		summary {
 			cursor: pointer;
+			&:hover {
+				text-decoration: underline red;
+			}
 		}
 
 		.adapter__container {

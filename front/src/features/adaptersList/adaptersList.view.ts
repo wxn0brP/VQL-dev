@@ -43,7 +43,9 @@ class AdaptersListView implements UiComponent {
         
         $store.selectedCollection.subscribe(collection => {
             this.element.querySelectorAll("[data-collection]").forEach((button) => {
-                button.classList.toggle("selected", button.getAttribute("data-collection") === collection);
+                const btnCollection = button.getAttribute("data-collection") === collection;
+                const btnAdapter = button.parentElement.id.replace("adapter__", "") === $store.selectedAdapter.get();
+                button.classList.toggle("selected", btnCollection && btnAdapter);
             })
         })
 

@@ -1,8 +1,8 @@
-import VQLProcessor, { createValtheraAdapter, VQLConfig } from "@wxn0brp/vql";
-import { Valthera } from "@wxn0brp/db";
+import VQLProcessor, { createValtheraAdapter } from "@wxn0brp/vql";
+import { createMemoryValthera} from "@wxn0brp/db-core";
 import DevPanelBackend from "./src";
 
-const db = new Valthera("data/dev-db");
+const db = createMemoryValthera();
 
 const api = createValtheraAdapter({
     meta: {
@@ -22,12 +22,7 @@ const processor = new VQLProcessor(
     {
         dev: db,
         api,
-    },
-    null as any,
-    new VQLConfig({
-        noCheckPermissions: true,
-        strictSelect: false
-    })
+    }
 );
 
 const panel = new DevPanelBackend(processor, {

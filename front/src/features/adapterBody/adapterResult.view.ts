@@ -8,7 +8,7 @@ class AdapterResultView implements UiComponent {
         this.element = document.querySelector("#adapter-result");
     }
 
-    render(data: any) {
+    render(data: any, adapter = $store.selectedAdapter.get(), collection = $store.selectedCollection.get()) {
         if (!data || (Array.isArray(data) && data.length === 0)) {
             this.clear();
             return;
@@ -23,7 +23,7 @@ class AdapterResultView implements UiComponent {
         const headers = Object.keys(items.reduce((acc, item) => ({ ...acc, ...item }), {}));
 
         const table = `
-            <h2>${$store.selectedAdapter.get()}/${$store.selectedCollection.get()}</h2>
+            <h2>${adapter}/${collection}</h2>
             <table>
                 <thead>
                     <tr>

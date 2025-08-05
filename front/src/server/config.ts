@@ -11,6 +11,7 @@ function setDatabases(cfg: Config) {
         instances[key] = new ValtheraRemote(value);
     }
     VQL.dbInstances = instances;
+    VQL.relation.dbs = instances;
 }
 
 function getConfig() {

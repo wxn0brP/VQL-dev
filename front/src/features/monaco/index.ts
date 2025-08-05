@@ -23,7 +23,7 @@ import { apiService } from "#services";
 
 const container = document.querySelector("#editor");
 let editor = monaco.editor.create(container, {
-    value: ``, 
+    value: ``,
     language: "typescript",
     theme: "vs-dark",
     automaticLayout: true,
@@ -39,7 +39,7 @@ export function getQuery() {
     let code = editor.getValue();
     code = code.replace("const q: VQLR =", "");
     const end = code.indexOf("};");
-    if (end !== -1) code = code.substring(0, end+1);
+    if (end !== -1) code = code.substring(0, end + 1);
     const query = new Function("return " + code)();
     return query;
 }
@@ -50,11 +50,15 @@ export async function VQL_run() {
     const result = await apiService.fetchVQL(query);
     console.log(result);
 
-    if (query?.d?.find || query?.d?.findOne) {
-        adapterResultView.render(result);
-    } else {
-        adapterResultView.clear();
+    if (query?.d?.find || query?.d?.findOne || query?.d?.f) {
+        const op = query.d.find ?? query.d.findOne ?? query.d.f;
+        adapterResultView.render(result, query.db, op.collection);
     }
+    else if (query?.r) 
+        adapterResultView.render(result, "r/" + query.r.path[0], query.r.path[1]);
+    else 
+        adapterResultView.clear();
+    
 
     const newCode = editor.getValue() + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
     editor.setValue(newCode);

@@ -1,9 +1,9 @@
-import { Valthera, ValtheraCompatible } from "@wxn0brp/db";
+import { ValtheraClass, ValtheraCompatible } from "@wxn0brp/db-core";
 import FalconFrame, { PluginSystem } from "@wxn0brp/falcon-frame";
 import { createCORSPlugin } from "@wxn0brp/falcon-frame/plugins/cors";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
 import { ValtheraResolverMeta } from "@wxn0brp/vql/apiAbstract";
-import { parseStringQuery } from "@wxn0brp/vql/cpu/string/index";
+import { parseVQLS } from "@wxn0brp/vql/cpu/string/index";
 import { Server } from "http";
 
 interface DevPanelOptions {
@@ -14,7 +14,7 @@ interface DevPanelOptions {
     pluginSystem?: PluginSystem;
 }
 
-function isValtheraInstance(db: any): db is Valthera {
+function isValtheraInstance(db: any): db is ValtheraClass {
     return (
         typeof db?.dbAction === "object" &&
         typeof db?.executor === "object" &&
@@ -28,9 +28,9 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
         type: "unknown",
         version: "0.0.0",
     }
-    if (db instanceof Valthera || isValtheraInstance(db)) {
+    if (db instanceof ValtheraClass || isValtheraInstance(db)) {
         adapter.type = "valthera";
-        if (db.version) adapter.version = db.version;
+        if (db.version) adapter.version = db.version + "-valthera.0";
     } else if ("meta" in db) {
         Object.assign(adapter, db.meta);
     }
@@ -70,7 +70,7 @@ export class DevPanelBackend {
         this.app.post("/VQL/query-string", async (req, res) => {
             try {
                 const query = req.body.query;
-                const result = parseStringQuery(query);
+                const result = parseVQLS(query);
                 return { err: false, result };
             } catch (err: any) {
                 res.status(500)
