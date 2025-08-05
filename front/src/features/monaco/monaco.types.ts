@@ -69,11 +69,13 @@ export async function loadAllCollections() {
 $store.adapters.subscribe(loadAllCollections);
 loadAllCollections();
 
-qs("#editor").addEventListener("keyup", (e) => {
+export function setCollectionTypes() {
     try {
-        const query = getQuery() as VQLR;
+        const query = getQuery(true) as VQLR;
         const prefix = "declare type V_CollectionList = ";
-        const statement = "db" in query ? `V_CollectionList_${escapeAdapterId(query.db)}` : "";
+        const statement = query && "db" in query ? `V_CollectionList_${escapeAdapterId(query.db)}` : "string";
         setTsType("collectionList", prefix + statement);
     } catch {}
-});
+}
+
+qs("#editor").addEventListener("keyup", () => setCollectionTypes());

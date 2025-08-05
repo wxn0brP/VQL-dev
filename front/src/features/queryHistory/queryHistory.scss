@@ -1,0 +1,11 @@
+#query-history {
+    .query-history-item {
+        padding: 5px;
+        cursor: pointer;
+        border-bottom: 1px solid var(--border);
+
+        &:hover {
+            text-decoration: underline red;
+        }
+    }
+}

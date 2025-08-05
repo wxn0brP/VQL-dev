@@ -5,6 +5,7 @@ const $store = createStore({
     selectedAdapter: null as string,
     selectedCollection: null as string,
     adapters: [] as AdaptersList_Entry[],
+    history: [] as string[],
 });
 
 export default $store;

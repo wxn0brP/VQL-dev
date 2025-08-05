@@ -1,7 +1,8 @@
 import { adapterResultView } from "#features/adapterBody/adapterResult.view";
+import { apiService } from "#services";
+import $store from "#store";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 import "./monaco.scss";
-import { apiService } from "#services";
 
 (self as any).MonacoEnvironment = {
     getWorkerUrl: function (moduleId: string, label: string) {
@@ -23,7 +24,7 @@ import { apiService } from "#services";
 
 const container = document.querySelector("#editor");
 let editor = monaco.editor.create(container, {
-    value: ``,
+    value: ``, 
     language: "typescript",
     theme: "vs-dark",
     automaticLayout: true,
@@ -35,23 +36,46 @@ VQL_reset(false);
 export default editor;
 export { monaco };
 
-export function getQuery() {
-    let code = editor.getValue();
+export function getQueryRaw() {
+    return editor.getValue();
+}
+
+export function getQuery(silent = false) {
+    let code = getQueryRaw();
 
     const start = code.indexOf("=");
-    if (start === -1) alert("Invalid query. Must start with `... =`");
+    if (start === -1) {
+        if (!silent) alert("Invalid query. Must start with `... =`");
+        return null;
+    }
     
     const end = code.indexOf(";;");
-    if (end === -1) alert("Invalid query. Must end with `;;`");
+    if (end === -1) {
+        if (!silent) alert("Invalid query. Must end with `;;`");
+        return null;
+    }
 
     code = code.substring(start + 1, end);
 
-    const query = new Function("return " + code)();
-    return query;
+    try {
+        const query = new Function("return " + code)();
+        return query;
+    } catch (e) {
+        if (!silent) alert("Invalid query: " + e.message);
+        return null;
+    }
 }
 
 export async function VQL_run() {
     const query = getQuery();
+    if (!query || Object.keys(query).length === 0) return;
+    
+    const jsonQuery = JSON.stringify(query);
+    let history = $store.history.get();
+    history = history.filter(q => q !== jsonQuery);
+    history.push(jsonQuery);
+    $store.history.set(history);
+
     console.log(query);
     const result = await apiService.fetchVQL(query);
     console.log(result);
@@ -77,6 +101,10 @@ export function VQL_reset(ask = true) {
     }
     adapterResultView.clear();
     editor.setValue(`q = {\n\t\n};;`);
+}
+
+export function setQuery(query: string) {
+    editor.setValue(query);
 }
 
 qs("#eb-run").on("click", VQL_run);
