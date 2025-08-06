@@ -10,7 +10,7 @@ const fetchService: IService = {
     },
 
     getAdapters(): Promise<AdaptersList_Entry[]> {
-        return fetch(defaultFetchUrl+"/VQL/get-adapters").then((res) => res.json());
+        return fetch(defaultFetchUrl + "/VQL/get-adapters").then((res) => res.json());
     }
 }
 

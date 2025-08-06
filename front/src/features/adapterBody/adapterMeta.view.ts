@@ -8,8 +8,8 @@ class AdapterMetaView implements UiComponent {
     render(adapter: AdaptersList_Entry) {
         this.element.innerHTML =
             Object.entries(adapter)
-            .map(([key, value]) => `<p><strong>${key}</strong>: ${value}</p>`)
-            .join("")
+                .map(([key, value]) => `<p><strong>${key}</strong>: ${value}</p>`)
+                .join("")
     }
 
     mount() {

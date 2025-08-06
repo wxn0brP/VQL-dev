@@ -1,8 +1,8 @@
-import { UiComponent } from "@wxn0brp/flanker-ui";
-import "./queryHistory.scss";
-import $store from "#store";
 import { setQuery } from "#features/monaco";
 import { setCollectionTypes } from "#features/monaco/monaco.types";
+import $store from "#store";
+import { UiComponent } from "@wxn0brp/flanker-ui";
+import "./queryHistory.scss";
 
 const HISTORY_KEY = "vql-query-history";
 

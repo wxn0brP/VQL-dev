@@ -4,7 +4,9 @@
         "target": "es2024",
         "moduleResolution": "bundler",
         "paths": {
-            "#*": ["./src/*"],
+            "#*": [
+                "./src/*"
+            ],
         },
         "esModuleInterop": true,
         "skipLibCheck": true,
@@ -12,10 +14,12 @@
         "inlineSourceMap": true,
         "types": [
             "esbuild-style-plugin"
-        ]
+        ],
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     },
     "include": [
-       "./src"
+        "./src"
     ],
     "exclude": [
         "node_modules"

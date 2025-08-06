@@ -15,10 +15,10 @@ export const adapterCollectionsView = (element: HTMLDivElement, adapterId: strin
     },
     events: {
         click: {
-            button: (el, e) => {
+            button: (el) => {
                 $store.selectedAdapter.set(adapterId);
                 $store.selectedCollection.set(el.getAttribute("data-collection"));
             }
-        } 
+        }
     }
 })

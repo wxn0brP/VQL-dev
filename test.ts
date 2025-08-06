@@ -1,5 +1,5 @@
 import VQLProcessor, { createValtheraAdapter } from "@wxn0brp/vql";
-import { createMemoryValthera} from "@wxn0brp/db-core";
+import { createMemoryValthera } from "@wxn0brp/db-core";
 import DevPanelBackend from "./src";
 
 const db = createMemoryValthera();
@@ -13,7 +13,7 @@ const api = createValtheraAdapter({
     async getCollections() {
         return ["collection1", "collection2", "collection3"];
     },
-    async find(collection, search, context, options, findOpts) {
+    async find() {
         return [];
     },
 });

@@ -24,7 +24,7 @@ class AdaptersListView implements UiComponent {
             detail.appendChild(container);
 
             const collections = adapterCollectionsView(container, adapter.logic_id);
-            
+
             summary.addEventListener("click", async () => {
                 $store.selectedAdapter.set(adapter.logic_id);
                 if (detail.open) return;
@@ -40,7 +40,7 @@ class AdaptersListView implements UiComponent {
         uiHelpers.bindHandlers(this.element, {
             "#adapters-header": () => this.load(),
         });
-        
+
         $store.selectedCollection.subscribe(collection => {
             this.element.querySelectorAll("[data-collection]").forEach((button) => {
                 const btnCollection = button.getAttribute("data-collection") === collection;

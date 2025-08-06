@@ -5,7 +5,7 @@ import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 import "./monaco.scss";
 
 (self as any).MonacoEnvironment = {
-    getWorkerUrl: function (moduleId: string, label: string) {
+    getWorkerUrl: function (_: string, label: string) {
         if (label === "json") {
             return "./dist/vs/language/json/json.worker.js";
         }
@@ -24,7 +24,7 @@ import "./monaco.scss";
 
 const container = document.querySelector("#editor");
 let editor = monaco.editor.create(container, {
-    value: ``, 
+    value: ``,
     language: "typescript",
     theme: "vs-dark",
     automaticLayout: true,
@@ -48,7 +48,7 @@ export function getQuery(silent = false) {
         if (!silent) alert("Invalid query. Must start with `... =`");
         return null;
     }
-    
+
     const end = code.indexOf(";;");
     if (end === -1) {
         if (!silent) alert("Invalid query. Must end with `;;`");
@@ -69,7 +69,7 @@ export function getQuery(silent = false) {
 export async function VQL_run() {
     const query = getQuery();
     if (!query || Object.keys(query).length === 0) return;
-    
+
     const jsonQuery = JSON.stringify(query);
     let history = $store.history.get();
     history = history.filter(q => q !== jsonQuery);
@@ -84,13 +84,13 @@ export async function VQL_run() {
         const op = query.d.find ?? query.d.findOne ?? query.d.f;
         adapterResultView.render(result, query.db, op.collection);
     }
-    else if (query?.r) 
+    else if (query?.r)
         adapterResultView.render(result, "r//" + query.r.path[0], query.r.path[1]);
     else if (typeof query === "string" && typeof result === "object")
         adapterResultView.render(result, "qs/", query);
     else
         adapterResultView.clear();
-    
+
     const newCode = editor.getValue() + `\n\n//====Result====\nvar result_${Date.now()} = ` + JSON.stringify(result, null, 2);
     editor.setValue(newCode);
 }

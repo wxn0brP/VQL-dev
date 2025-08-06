@@ -25,16 +25,21 @@ class AdapterResultView implements UiComponent {
 
         const headers = Object.keys(items.reduce((acc, item) => ({ ...acc, ...item }), {}));
         const pk = "_id";
-        const tbody = items.map(row => `
-            <tr data-id="${row[pk]}">
-                ${headers.map(h => {
-                    const pkData = h === pk ? `data-pk="true"` : "";
-                    const isObject = typeof row[h] === "object" && row[h] !== null;
-                    const obj = isObject ? `data-object="true"` : ""
-                    return `<td data-key="${h}" ${pkData} ${obj}>${this.formatCell(row[h])}</td>`
-                }).join("")}
-            </tr>
-        `).join("");
+        const tbody = items.map(row => {
+            const cells = headers.map(h => {
+                const value = row[h];
+                const attrs = [
+                    `data-key="${h}"`,
+                    h === pk ? 'data-pk="true"' : '',
+                    (typeof value === "object" && value !== null) ? 'data-object="true"' : ''
+                ].filter(Boolean).join(" ");
+
+                return `<td ${attrs}>${this.formatCell(value)}</td>`;
+            }).join("");
+
+            return `<tr data-id="${row[pk]}">${cells}</tr>`;
+        }).join("");
+
 
         const table = `
             <h2>${adapter}/${collection}</h2>
@@ -123,19 +128,11 @@ class AdapterResultView implements UiComponent {
         const collection = $store.selectedCollection.get();
 
         let newValue: any = value;
-        const numValue = Number(value);
-        if (!isNaN(numValue) && value.trim() !== "") {
-            newValue = numValue;
-        } else if (value.toLowerCase() === "true") {
-            newValue = true;
-        } else if (value.toLowerCase() === "false") {
-            newValue = false;
-        }
 
         const query: VqlQueryRaw = {
             db: adapter,
             d: {
-                update: {
+                updateOne: {
                     collection: collection,
                     search: { _id: id },
                     updater: { [key]: newValue },

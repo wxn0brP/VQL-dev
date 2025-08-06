@@ -62,7 +62,7 @@ export async function loadAllCollections() {
 
         setTsCollectionList(adapter.logic_id, collections);
     }
-    
+
     setRelationPaths(relationPaths);
 }
 
@@ -75,7 +75,7 @@ export function setCollectionTypes() {
         const prefix = "declare type V_CollectionList = ";
         const statement = query && "db" in query ? `V_CollectionList_${escapeAdapterId(query.db)}` : "string";
         setTsType("collectionList", prefix + statement);
-    } catch {}
+    } catch { }
 }
 
 qs("#editor").addEventListener("keyup", () => setCollectionTypes());

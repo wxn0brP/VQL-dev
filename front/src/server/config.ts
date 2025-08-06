@@ -46,7 +46,7 @@ export async function doConfig() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": auth,  
+                    "Authorization": auth,
                 },
                 body: JSON.stringify({ db: name }),
             });
