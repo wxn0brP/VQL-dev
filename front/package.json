@@ -15,10 +15,10 @@
     "dependencies": {
         "@wxn0brp/db-client": "^0.1.2",
         "@wxn0brp/flanker-ui": "^0.3.0",
-        "@wxn0brp/vql-client": "^0.1.0",
+        "@wxn0brp/vql-client": "^0.2.0",
         "esbuild": "^0.25.8",
         "esbuild-style-plugin": "^1.6.3",
         "monaco-editor": "^0.52.2",
-        "sass": "^1.89.2"
+        "sass": "^1.90.0"
     }
 }

@@ -1,5 +1,5 @@
 import $store from "#store";
-import { VQLR } from "@wxn0brp/vql-client/vql";
+import { VQL_Query } from "@wxn0brp/vql-client/vql";
 import { getQuery, monaco } from ".";
 import { apiService } from "#services";
 
@@ -34,7 +34,7 @@ export function setDbList(dbs: string[]) {
 }
 
 setTsType("collectionList", `declare type V_CollectionList = "";`);
-setTsType("query", `declare var q: VqlQueryRaw;`);
+setTsType("query", `declare var q: VQLUQ;`);
 
 export function setRelationPaths(data: [string, string][]) {
     const mapped = data.map(([db, collection]) => `["${db}","${collection}"]`).join(" | ");
@@ -71,7 +71,7 @@ loadAllCollections();
 
 export function setCollectionTypes() {
     try {
-        const query = getQuery(true) as VQLR;
+        const query = getQuery(true) as VQL_Query;
         const prefix = "declare type V_CollectionList = ";
         const statement = query && "db" in query ? `V_CollectionList_${escapeAdapterId(query.db)}` : "string";
         setTsType("collectionList", prefix + statement);

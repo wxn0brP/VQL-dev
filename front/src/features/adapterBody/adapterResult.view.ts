@@ -1,7 +1,7 @@
 import $store from "#store";
 import { apiService } from "#services";
 import { UiComponent } from "@wxn0brp/flanker-ui";
-import { VqlQueryRaw } from "@wxn0brp/vql-client/vql";
+import { VQLUQ } from "@wxn0brp/vql-client/vql";
 
 class AdapterResultView implements UiComponent {
     element: HTMLDivElement;
@@ -129,7 +129,7 @@ class AdapterResultView implements UiComponent {
 
         let newValue: any = value;
 
-        const query: VqlQueryRaw = {
+        const query: VQLUQ = {
             db: adapter,
             d: {
                 updateOne: {
