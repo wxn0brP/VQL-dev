@@ -4,10 +4,14 @@ import { VQL } from "./vql";
 export const channel = new BroadcastChannel("VQL");
 
 function getAdapterMeta(id: string, db: ValtheraRemote) {
+    let version = db.version;
+    if (id === "local") version += "-local.0";
+    else version += "-client.0";
+
     const adapter = {
         logic_id: id,
         type: "valthera",
-        version: db.version + "-client.0",
+        version,
     }
     return adapter;
 }

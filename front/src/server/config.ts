@@ -1,6 +1,6 @@
 import { ValtheraRemote } from "@wxn0brp/db-client";
 import { textarea, ul } from "./html";
-import { VQL } from "./vql";
+import { db, VQL } from "./vql";
 import { buildSelect } from "./form";
 
 type Config = Record<string, string>;
@@ -11,6 +11,7 @@ function setDatabases(cfg: Config) {
     for (const [key, value] of Object.entries(cfg)) {
         instances[key] = new ValtheraRemote(value);
     }
+    instances["local"] = db;
     VQL.dbInstances = instances;
     VQL.relation.dbs = instances;
 }
@@ -29,7 +30,7 @@ export async function doConfig() {
     getConfig();
     setDatabases(cfg);
 
-    ul.innerHTML = "";
+    ul.innerHTML = "<li>local: OK</li>";
 
     const keys = Object.keys(cfg);
     keys.forEach(async (key) => {
