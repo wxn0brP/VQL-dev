@@ -34,6 +34,9 @@ channel.onmessage = async (e) => {
     }
     else if (type === "vql") {
         const id = data.id;
+        if (typeof data.query === "string") {
+            console.log("->", VQL._parseQuery(data.query));
+        }
         const res = await VQL.execute(data.query, {});
         channel.postMessage({ type: "vql-" + id, data: res });
     }

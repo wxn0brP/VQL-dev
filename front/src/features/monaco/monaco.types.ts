@@ -1,7 +1,8 @@
+import { apiService } from "#services";
 import $store from "#store";
 import { VQL_Query } from "@wxn0brp/vql-client/vql";
-import { getQuery, monaco } from ".";
-import { apiService } from "#services";
+import { monaco } from "./create";
+import { getQuery } from ".";
 
 export function setTsType(file: string, content: string) {
     content = content
