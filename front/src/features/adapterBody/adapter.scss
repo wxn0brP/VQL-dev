@@ -14,7 +14,7 @@
 #adapter-result {
     margin-top: 20px;
     padding: 2px;
-    overflow-y: auto;
+    overflow: auto;
     height: 100%;
 
     table {
@@ -27,6 +27,8 @@
             border: 1px solid var(--border);
             padding: 8px;
             text-align: left;
+            max-width: 100px;
+            word-wrap: break-word;
         }
 
         th {
@@ -38,6 +40,7 @@
             margin: 0;
             white-space: pre-wrap;
             word-break: break-all;
+            max-width: 100%;
         }
 
         .edit-input {
