@@ -1,17 +1,13 @@
 import { ValtheraClass, ValtheraCompatible } from "@wxn0brp/db-core";
-import FalconFrame, { PluginSystem } from "@wxn0brp/falcon-frame";
+import FalconFrame from "@wxn0brp/falcon-frame";
 import { createCORSPlugin } from "@wxn0brp/falcon-frame/plugins/cors";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
 import { ValtheraResolverMeta } from "@wxn0brp/vql/apiAbstract";
 import { parseVQLS } from "@wxn0brp/vql/cpu/string/index";
-import { Server } from "http";
 
 interface DevPanelOptions {
     port?: number;
-    app?: FalconFrame;
-    http?: Server;
     origins?: string[] | string;
-    pluginSystem?: PluginSystem;
 }
 
 function isValtheraInstance(db: any): db is ValtheraClass {
@@ -41,22 +37,15 @@ export class DevPanelBackend {
     private app: FalconFrame;
     private port: number;
     private processor: VQLProcessor;
-    private http: Server;
-    private pluginSystem: PluginSystem;
     private origins = [
         "https://wxn0brp.github.io",
     ];
+    private started = false;
 
-    constructor(processor: VQLProcessor, options?: DevPanelOptions) {
+    constructor(processor: VQLProcessor, options: DevPanelOptions = {}) {
         this.processor = processor;
         this.port = options?.port ?? 3000;
-        this.app = options?.app ?? new FalconFrame();
-        this.http = options?.http ?? null;
-        this.pluginSystem = options?.pluginSystem ?? new PluginSystem();
-
-        if (!options.app) {
-            this.app.use(this.pluginSystem.getRouteHandler());
-        }
+        this.app = new FalconFrame();
 
         if (options?.origins) {
             this.origins = [options.origins].flat();
@@ -64,7 +53,7 @@ export class DevPanelBackend {
     }
 
     private setupHTTP() {
-        this.pluginSystem.register(createCORSPlugin(this.origins));
+        this.app.use(createCORSPlugin(this.origins).process);
         FF_VQL(this.app, this.processor);
 
         this.app.post("/VQL/query-string", async (req, res) => {
@@ -111,7 +100,9 @@ export class DevPanelBackend {
     }
 
     public start() {
-        if (!this.http) this.http = this.app.listen(this.port, () => {
+        if (this.started) return console.warn("[DevPanelBackend] Already started.");
+        this.started = true;
+        this.app.listen(this.port, () => {
             console.log(`[DevPanelBackend] Running at http://localhost:${this.port}`);
         });
 
