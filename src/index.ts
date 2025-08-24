@@ -33,7 +33,7 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
     return adapter;
 }
 
-export class DevPanelBackend {
+export class VqlDevPanel {
     private app: FalconFrame;
     private port: number;
     private processor: VQLProcessor;
@@ -109,5 +109,3 @@ export class DevPanelBackend {
         this.setupHTTP();
     }
 }
-
-export default DevPanelBackend;
