@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
@@ -45,10 +45,9 @@ jobs:
           git checkout --orphan front
           git add .
           git commit -m "Build"
-          
-          # Użyj GITHUB_TOKEN do uwierzytelnienia przez HTTPS
+
           git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/wxn0brP/VQL-dev.git 
-          
+
           git push --force origin front
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
