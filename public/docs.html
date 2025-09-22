@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VQL Documentation - URL Parameters</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        code {
+            background-color: #222;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        pre {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #222;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .param-name {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            background-color: #222;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        p {
+            margin-bottom: 9px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>VQL Documentation - URL Parameters</h1>
+
+    <p>This documentation describes the URL parameters that can be used to configure the VQL application.</p>
+
+    <h2>Configuration Parameters</h2>
+    <p>The application can be configured using the <code>p</code> or <code>s</code> URL parameters.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="param-name">p</code></td>
+                <td>
+                    Use for special modes or connecting to a <b>port</b> on localhost.
+                    <ul style="margin-top: 5px;">
+                        <li>A port number (e.g., <code>3000</code>).</li>
+                        <li><code>web</code>: Activates web channel mode.</li>
+                        <li><code>map</code>: Activates map service mode.</li>
+                    </ul>
+                </td>
+                <td><code>?p=3000</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">s</code></td>
+                <td>Use to provide a <b>full URL</b> to a VQL server endpoint.</td>
+                <td><code>?s=https://my-vql-server.com/VQL</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <h3>Note</h3>
+        <p>
+            If no configuration parameter is provided,
+            the application defaults to <code>http://localhost:3000</code>
+            (default VQL Dev Server).
+        </p>
+    </div>
+
+    <h2>Web Channel Mode (<code>p=web</code>)</h2>
+    <p>
+        Web channel mode enables communication between the VQL client and a VQL server running in a different browser
+        tab. This is primarily used for development to connect the UI to a local test server without cross-origin (CORS)
+        issues.
+    </p>
+    <p>
+        To use this mode, you must have the server environment running on the
+        <a href="./server" target="_blank">server.html</a>
+        page in a separate tab.
+    </p>
+
+    <h2>
+        Map Service Mode
+        (<code>p=map</code>)
+    </h2>
+    <p>
+        Map mode is a special mode for developers. It allows you to connect to any standard VQL instance without running
+        the local development server, and manually define a list of adapters that the instance should use. This is
+        useful for testing or connecting to remote VQL endpoints with a custom adapter configuration.
+    </p>
+    <p>
+        When using
+        <code>p=map</code>,
+        the following additional parameters are available:
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="param-name">ml</code></td>
+                <td>Comma-separated list of map layer names. If not provided, the user will be prompted to enter them.
+                </td>
+                <td><code>?ml=layer1,layer2</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">mp</code></td>
+                <td>Map port or full URL for the map service's VQL endpoint. This is a <b>required</b> parameter when in
+                    map mode. If not provided, the user will be prompted.</td>
+                <td><code>?mp=8080</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">mb</code></td>
+                <td>A JSON string representing a body object to be sent with every VQL request. This can be used for
+                    things like authentication tokens or other server-required parameters.</td>
+                <td><code>?mb={"token":"your-auth-token"}</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Usage Examples</h2>
+
+    <h3>Connect to local server on port 3000</h3>
+    <pre>$host/?p=3000</pre>
+
+    <h3>Connect to a remote server</h3>
+    <pre>$host/?s=https://my-vql-server.com</pre>
+
+    <h3>Use Web Channel Mode</h3>
+    <pre>$host/server.html</pre>
+    <br>
+    <pre>$host/?p=web</pre>
+
+    <h3>Use Map Service Mode</h3>
+    <pre>$host/?p=map&ml=buildings,roads&mp=8080&mb={"token":"abc"}</pre>
+
+    <script>
+        document.querySelectorAll("pre").forEach((pre) => {
+            pre.innerHTML = pre.innerHTML.replace("$host", window.location.origin);
+        });
+    </script>
+</body>
+
+</html>
