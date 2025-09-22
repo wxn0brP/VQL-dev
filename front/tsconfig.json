@@ -14,9 +14,7 @@
         "inlineSourceMap": true,
         "types": [
             "esbuild-style-plugin"
-        ],
-        "noUnusedLocals": true,
-        "noUnusedParameters": true
+        ]
     },
     "include": [
         "./src"

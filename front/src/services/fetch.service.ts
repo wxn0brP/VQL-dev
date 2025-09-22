@@ -1,8 +1,10 @@
-import { VQLUQ } from "@wxn0brp/vql-client/vql";
-import { IService } from "./types";
-import { fetchVQL } from "@wxn0brp/vql-client";
 import { AdaptersList_Entry } from "#features/adaptersList/types";
 import { defaultFetchUrl } from "#init";
+import { fetchVQL, VConfig } from "@wxn0brp/vql-client";
+import { VQLUQ } from "@wxn0brp/vql-client/vql";
+import { IService } from "./types";
+
+VConfig.url = defaultFetchUrl + "/VQL";
 
 const fetchService: IService = {
     fetchVQL<T = any>(query: VQLUQ): Promise<T> {
