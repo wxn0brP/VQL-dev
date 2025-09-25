@@ -22,6 +22,12 @@ To install the dev panel as a dev dependency using Yarn:
 yarn add -D github:wxn0brP/VQL-dev#dist
 ```
 
+## 📑 Links
+
+[Frontend Public Host](https://wxn0brp.github.io/VQL-dev/)
+
+[Docs](https://wxn0brp.github.io/VQL-dev/docs)
+
 ## 🚀 Usage
 
 ### 1. **Start the Dev Panel**
