@@ -22,7 +22,7 @@
     },
     "devDependencies": {
         "@types/node": "^24.3.0",
-        "@wxn0brp/db-core": "^0.1.5",
+        "@wxn0brp/db-core": "^0.2.0",
         "@wxn0brp/vql": "^0.6.2",
         "typescript": "^5.9.2"
     },
