@@ -208,8 +208,9 @@
     <pre>$host/?p=map&ml=buildings,roads&mp=8080&mb={"token":"abc"}</pre>
 
     <script>
+        const host = window.location.href.split("/").slice(0, -1).join("/");
         document.querySelectorAll("pre").forEach((pre) => {
-            pre.innerHTML = pre.innerHTML.replace("$host", window.location.origin);
+            pre.innerHTML = pre.innerHTML.replace("$host", host);
         });
     </script>
 </body>
