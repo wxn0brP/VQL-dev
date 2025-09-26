@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VQL Dev Server</title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wxn0brP/ValtheraDB/refs/heads/main/logo.svg"
+        type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            padding: 5px;
+        }
+
+        textarea {
+            width: 90%;
+            height: 300px;
+            cursor: text !important;
+        }
+
+        input {
+            width: 200px;
+            cursor: text !important;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        div {
+            height: 2rem;
+        }
+
+        ul {
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="importmap">
+    {
+        "imports": {
+            "@wxn0brp/db-core": "https://esm.sh/@wxn0brp/db-core",
+            "@wxn0brp/db-core/": "https://esm.sh/@wxn0brp/db-core/",
+            "@wxn0brp/vql": "https://wxn0brp.github.io/VQL/browser/index.js"
+        }
+    }
+    </script>
+
+    <h2>Config</h2>
+    <p>Schema:</p>
+    <p>db-name http://db-name:db-auth@server-url</p>
+    <br>
+    <textarea class="btn"></textarea>
+    <div></div>
+    <button class="btn" id="run">Run</button>
+    <button class="btn" id="save">Save in localStorage</button>
+    <div></div>
+
+    <h2>Edit Config</h2>
+    <form>
+        <label>
+            Alias:
+            <select id="alias-select" class="btn" style="margin-right: 3px;"></select>
+            <input id="alias" class="btn">
+        </label>
+        <label>
+            Name:
+            <input id="name" class="btn">
+        </label>
+        <label>
+            Auth:
+            <input id="auth" class="btn" style="width: 70%;">
+        </label>
+        <label>
+            URL:
+            <input id="url" class="btn">
+        </label>
+        <button class="btn" type="submit">Edit</button>
+        <button class="btn" type="reset">Reset</button>
+    </form>
+    <div></div>
+
+    <h2>Active databases</h2>
+    <ul></ul>
+
+    <script type="module" src="./dist/server/index.js"></script>
+</body>
+
+</html>
