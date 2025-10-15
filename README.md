@@ -42,10 +42,6 @@ Open the following URL in your browser to access the dev panel:
 
 👉 [https://wxn0brp.github.io/VQL-dev/?p=3000](https://wxn0brp.github.io/VQL-dev/?p=3000)
 
-## More Information
-
-💜 [https://wxn0brp.github.io/VQL-dev/docs](https://wxn0brp.github.io/VQL-dev/docs)
-
 ## 📄 License
 
 MIT License — see [LICENSE](LICENSE)
