@@ -9,7 +9,6 @@
         "outDir": "./dist",
         "inlineSourceMap": false,
         "removeComments": true,
-        "resolveJsonModule": true,
         "declaration": true
     },
     "include": [

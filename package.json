@@ -1,6 +1,6 @@
 {
     "name": "@wxn0brp/vql-dev",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "description": "VQL Dev Panel",
@@ -8,27 +8,31 @@
         "type": "git",
         "url": "https://github.com/wxn0brP/VQL-dev.git"
     },
+    "homepage": "https://github.com/wxn0brP/VQL-dev",
     "author": "wxn0brP",
     "license": "MIT",
-    "private": true,
     "type": "module",
     "scripts": {
         "build": "tsc && tsc-alias",
         "test": "bun run test.ts"
     },
     "peerDependencies": {
-        "@wxn0brp/db-core": ">=0.1.5",
-        "@wxn0brp/vql": ">=0.6.2"
+        "@wxn0brp/db-core": ">=0.2.4",
+        "@wxn0brp/vql": ">=0.8.2"
     },
     "devDependencies": {
-        "@types/node": "^24.3.0",
-        "@wxn0brp/db-core": "^0.1.5",
-        "@wxn0brp/vql": "^0.6.2",
-        "typescript": "^5.9.2"
+        "@types/node": "*",
+        "@wxn0brp/db-core": "^0.2.4",
+        "@wxn0brp/vql": "^0.8.2",
+        "tsc-alias": "*",
+        "typescript": "*"
     },
     "dependencies": {
-        "@wxn0brp/falcon-frame": ">=0.0.21"
+        "@wxn0brp/falcon-frame": ">=0.5.1"
     },
+    "files": [
+        "dist"
+    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",

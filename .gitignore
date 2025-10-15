@@ -3,6 +3,7 @@ node_modules
 
 data
 dist
+test.*
 
 .suglite_history
 yarn.lock

@@ -1,9 +1,8 @@
 import { ValtheraClass, ValtheraCompatible } from "@wxn0brp/db-core";
 import FalconFrame from "@wxn0brp/falcon-frame";
-import { createCORSPlugin } from "@wxn0brp/falcon-frame/plugins/cors";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
-import { ValtheraResolverMeta } from "@wxn0brp/vql/apiAbstract";
 import { parseVQLS } from "@wxn0brp/vql/cpu/string/index";
+import { ValtheraResolverMeta } from "@wxn0brp/vql/helpers/apiAbstract";
 
 interface DevPanelOptions {
     port?: number;
@@ -53,7 +52,7 @@ export class VqlDevPanel {
     }
 
     private setupHTTP() {
-        this.app.use(createCORSPlugin(this.origins).process);
+        this.app.setOrigin(this.origins);
         FF_VQL(this.app, this.processor);
 
         this.app.post("/VQL/query-string", async (req, res) => {
