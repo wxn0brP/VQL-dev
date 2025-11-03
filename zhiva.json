@@ -1,0 +1,4 @@
+{
+    "icon": "public/zhiva.png",
+    "redirect_zhiva": "zhiva.json#front"
+}
