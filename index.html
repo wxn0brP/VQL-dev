@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>VQL Dev Tool</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./dist/index.css">
+</head>
+
+<body>
+    <main>
+        <nav>
+            <h1 id="adapters-header">Adapters</h1>
+            <div id="adapters-list"></div>
+            <h1 id="query-history-header">History</h1>
+            <div id="query-history"></div>
+        </nav>
+
+        <div id="adapter-body">
+            <button id="toggle-sidebar">&lt;||</button>
+            <div id="resize">&lt;-&gt;</div>
+            <h2>Adapter</h2>
+            <div id="adapter-meta"></div>
+            <div id="adapter-structure" style="display: none;">
+                <h2>Structure</h2>
+                <div id="adapter-structure-content"></div>
+            </div>
+            <div id="adapter-result"></div>
+        </div>
+
+        <div id="editor"></div>
+        <div id="editor-buttons">
+            <button id="eb-run">Run</button>
+            <button id="eb-reset">Reset</button>
+        </div>
+    </main>
+    <script type="module" src="./dist/index.js"></script>
+</body>
+
+</html>

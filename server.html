@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>VQL Dev Server</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="server.css">
+</head>
+
+<body>
+    <script type="importmap">
+    {
+        "imports": {
+            "@wxn0brp/db-core": "https://esm.sh/@wxn0brp/db-core",
+            "@wxn0brp/db-core/": "https://esm.sh/@wxn0brp/db-core/",
+            "@wxn0brp/vql": "https://wxn0brp.github.io/VQL/browser/index.js"
+        }
+    }
+    </script>
+
+    <div class="module">
+        <h2>Config</h2>
+        <p>Schema: db-name http://db-name:db-auth@server-url</p>
+        <textarea></textarea>
+        <div class="button-group">
+            <button id="run">Run</button>
+            <button id="save">Save in localStorage</button>
+        </div>
+    </div>
+
+    <div class="dual-module-container">
+        <div class="module">
+            <h2>Edit Config</h2>
+            <form>
+                <label>
+                    Alias:
+                    <div style="display: flex; gap: 5px;">
+                        <select id="alias-select" style="width: auto;"></select>
+                        <input id="alias">
+                    </div>
+                </label>
+                <label>
+                    Name:
+                    <input id="name">
+                </label>
+                <label>
+                    Auth:
+                    <input id="auth">
+                </label>
+                <label>
+                    URL:
+                    <input id="url">
+                </label>
+                <div class="button-group">
+                    <button type="submit">Edit</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="module">
+            <h2>Active databases</h2>
+            <ul></ul>
+        </div>
+    </div>
+
+    <div class="module">
+        <h2>Memory DB</h2>
+        <textarea id="memory-db"></textarea>
+        <div class="button-group">
+            <button id="memory-db-load-preset">Load Preset Data</button>
+        </div>
+    </div>
+
+    <script type="module" src="./dist/server/index.js"></script>
+</body>
+
+</html>
