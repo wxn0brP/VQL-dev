@@ -4,38 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
     <title>VQL Dev Server</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            padding: 5px;
-        }
-
-        textarea {
-            width: 90%;
-            height: 300px;
-            cursor: text !important;
-        }
-
-        input {
-            width: 200px;
-            cursor: text !important;
-        }
-
-        label {
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        div {
-            height: 2rem;
-        }
-
-        ul {
-            padding-left: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="server.css">
 </head>
 
 <body>
@@ -49,50 +21,60 @@
     }
     </script>
 
-    <h2>Config</h2>
-    <p>Schema:</p>
-    <p>db-name http://db-name:db-auth@server-url</p>
-    <br>
-    <textarea class="btn"></textarea>
-    <div></div>
-    <button class="btn" id="run">Run</button>
-    <button class="btn" id="save">Save in localStorage</button>
-    <div></div>
+    <div class="module">
+        <h2>Config</h2>
+        <p>Schema: db-name http://db-name:db-auth@server-url</p>
+        <textarea></textarea>
+        <div class="button-group">
+            <button id="run">Run</button>
+            <button id="save">Save in localStorage</button>
+        </div>
+    </div>
 
-    <h2>Edit Config</h2>
-    <form>
-        <label>
-            Alias:
-            <select id="alias-select" class="btn" style="margin-right: 3px;"></select>
-            <input id="alias" class="btn">
-        </label>
-        <label>
-            Name:
-            <input id="name" class="btn">
-        </label>
-        <label>
-            Auth:
-            <input id="auth" class="btn" style="width: 70%;">
-        </label>
-        <label>
-            URL:
-            <input id="url" class="btn">
-        </label>
-        <button class="btn" type="submit">Edit</button>
-        <button class="btn" type="reset">Reset</button>
-    </form>
-    <div></div>
+    <div class="dual-module-container">
+        <div class="module">
+            <h2>Edit Config</h2>
+            <form>
+                <label>
+                    Alias:
+                    <div style="display: flex; gap: 5px;">
+                        <select id="alias-select" style="width: auto;"></select>
+                        <input id="alias">
+                    </div>
+                </label>
+                <label>
+                    Name:
+                    <input id="name">
+                </label>
+                <label>
+                    Auth:
+                    <input id="auth">
+                </label>
+                <label>
+                    URL:
+                    <input id="url">
+                </label>
+                <div class="button-group">
+                    <button type="submit">Edit</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
 
-    <h2>Active databases</h2>
-    <ul></ul>
+        <div class="module">
+            <h2>Active databases</h2>
+            <ul></ul>
+        </div>
+    </div>
 
-    <div></div>
-    <h2>Memory DB</h2>
-    <textarea id="memory-db" class="btn"></textarea>
-    <div></div>
-    <button class="btn" id="memory-db-dump">Dump</button>
-    <button class="btn" id="memory-db-load">Load</button>
-    <div></div>
+    <div class="module">
+        <h2>Memory DB</h2>
+        <textarea id="memory-db"></textarea>
+        <div class="button-group">
+            <button id="memory-db-dump">Dump</button>
+            <button id="memory-db-load">Load</button>
+        </div>
+    </div>
 
     <script type="module" src="./dist/server/index.js"></script>
 </body>
