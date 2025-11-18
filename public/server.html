@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VQL Dev Server</title>
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wxn0brP/ValtheraDB/refs/heads/main/logo.svg"
-        type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -86,6 +85,14 @@
 
     <h2>Active databases</h2>
     <ul></ul>
+
+    <div></div>
+    <h2>Memory DB</h2>
+    <textarea id="memory-db" class="btn"></textarea>
+    <div></div>
+    <button class="btn" id="memory-db-dump">Dump</button>
+    <button class="btn" id="memory-db-load">Load</button>
+    <div></div>
 
     <script type="module" src="./dist/server/index.js"></script>
 </body>

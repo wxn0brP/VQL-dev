@@ -1,11 +1,11 @@
 import { cfg } from "./config";
 import { textarea } from "./html";
 
-const aliasInput = qsi("#alias");
+const aliasInput = qi("#alias");
 const aliasSelect = qs<HTMLSelectElement>("#alias-select");
-const nameInput = qsi("#name");
-const authInput = qsi("#auth");
-const urlInput = qsi("#url");
+const nameInput = qi("#name");
+const authInput = qi("#auth");
+const urlInput = qi("#url");
 
 export function buildSelect() {
     const keys = Object.keys(cfg);
@@ -50,11 +50,11 @@ qs<HTMLFormElement>("form").addEventListener("submit", (e) => {
         .map(line => {
             if (!line.trim()) return line;
             const key = line.split(" ")[0];
-            if (key === name) 
+            if (key === name)
                 return `${name} ${url.href}`;
             return line;
         })
         .join("\n");
-    
+
     buildSelect();
 });
