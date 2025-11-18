@@ -1,5 +1,5 @@
 {
-    "cmd": "tsc && yarn build --dev",
+    "cmd": "tsc && bun run build.js --dev",
     "watch": [
         "src"
     ],
