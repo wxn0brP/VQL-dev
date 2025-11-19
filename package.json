@@ -12,6 +12,9 @@
     "author": "wxn0brP",
     "license": "MIT",
     "type": "module",
+    "bin": {
+        "vql-dev": "./dist/cli.js"
+    },
     "scripts": {
         "build": "tsc && tsc-alias",
         "test": "bun run test.ts"
