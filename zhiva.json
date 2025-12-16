@@ -1,4 +1,5 @@
 {
+    "name": "VQL-dev",
     "icon": "public/favicon.png",
     "redirect_zhiva": "zhiva.json#front"
 }
