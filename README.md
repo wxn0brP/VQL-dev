@@ -1,5 +1,7 @@
 # VQL Dev Panel
 
+[![Install via Zhiva](https://img.shields.io/badge/Zhiva-install-blue)](zhiva://install/VQL-dev)
+
 A development panel for exploring and interacting with **VQL** (Valthera Query Language) adapters and databases. The panel provides a UI for testing queries, inspecting adapters, and visualizing data structures.
 
 ## 🔧 Features
