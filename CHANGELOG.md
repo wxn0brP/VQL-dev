@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/wxn0brP/VQL-dev/compare/v0.4.0...v0.4.1) (2026-01-31)
+
+
+### Features
+
+* cli ([10f31c3](https://github.com/wxn0brP/VQL-dev/commit/10f31c3dab0ff0f8570b83227365e0cbc9d3e8a9))
+* dump/load memory & bump deps ([5c07ccc](https://github.com/wxn0brP/VQL-dev/commit/5c07cccdebdfe33ce86fec9ba9e2a2dc43787ef8))
+* improve server.html styles ([5b84d21](https://github.com/wxn0brP/VQL-dev/commit/5b84d21b79d1b7e0d41d7ca1d5aeb9ade4509967))
+* local database data ([63d6899](https://github.com/wxn0brP/VQL-dev/commit/63d68999fea2ceb5f7639baadc46edc30a8ddd12))
+* zhiva integration ([8fe32df](https://github.com/wxn0brP/VQL-dev/commit/8fe32df43429df2c8def3fc2fec0d10957245d2f))
+
+
+### Bug Fixes
+
+* zhiva icon ([e471229](https://github.com/wxn0brP/VQL-dev/commit/e47122989be8ca25851cb523e7971ef5a8971cac))
+* zhiva.json ([77468b7](https://github.com/wxn0brP/VQL-dev/commit/77468b7032e5245a365ab6cc969f16ba47b6083b))
+* zhiva.json ([41bdea3](https://github.com/wxn0brP/VQL-dev/commit/41bdea380c7ca4bf26426211387d0a0f2f8230d5))
+
 ## 0.4.0 (2025-10-15)
 
 
