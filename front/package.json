@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@wxn0brp/db-client": "^0.2.1",
-        "@wxn0brp/flanker-ui": "^0.4.3",
+        "@wxn0brp/flanker-ui": "^0.5.0",
         "@wxn0brp/vql-client": "^0.2.4",
         "esbuild": "^0.27.0",
         "esbuild-style-plugin": "^1.6.3",
