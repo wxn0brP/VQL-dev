@@ -13,7 +13,7 @@
         "typescript": "*"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "^0.2.1",
+        "@wxn0brp/db-client": "^0.4.0",
         "@wxn0brp/flanker-ui": "^0.4.3",
         "@wxn0brp/vql-client": "^0.2.4",
         "esbuild": "^0.27.0",
