@@ -7,18 +7,18 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "node build.js"
+        "build": "bun run build.ts"
     },
     "devDependencies": {
-        "typescript": "*"
-    },
-    "dependencies": {
-        "@wxn0brp/db-client": "^0.2.1",
-        "@wxn0brp/flanker-ui": "^0.4.3",
-        "@wxn0brp/vql-client": "^0.2.4",
-        "esbuild": "^0.27.0",
+        "typescript": "*",
+        "esbuild": "^0.27.3",
         "esbuild-style-plugin": "^1.6.3",
         "monaco-editor": "^0.54.0",
-        "sass": "^1.94.1"
+        "sass": "^1.97.3"
+    },
+    "dependencies": {
+        "@wxn0brp/db-client": "^0.4.4",
+        "@wxn0brp/flanker-ui": "^0.5.1",
+        "@wxn0brp/vql-client": "^0.2.8"
     }
 }

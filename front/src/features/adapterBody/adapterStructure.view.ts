@@ -13,7 +13,7 @@ export const adapterStructureView = () => mountView({
                 find: {
                     collection: $store.selectedCollection.get(),
                     search: {},
-                    options: { max: data.limit || 10 }
+                    options: { limit: data.limit || 10 }
                 }
             }
         });

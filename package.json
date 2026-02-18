@@ -20,18 +20,18 @@
         "test": "bun run test.ts"
     },
     "peerDependencies": {
-        "@wxn0brp/db-core": ">=0.4.0",
-        "@wxn0brp/vql": ">=0.10.4"
+        "@wxn0brp/db-core": "~0.9.0",
+        "@wxn0brp/vql": "~0.11.0"
     },
     "devDependencies": {
         "@types/node": "*",
-        "@wxn0brp/db-core": "^0.4.0",
-        "@wxn0brp/vql": "^0.10.4",
+        "@wxn0brp/db-core": "~0.9.0",
+        "@wxn0brp/vql": "^0.11.0",
         "tsc-alias": "*",
         "typescript": "*"
     },
     "dependencies": {
-        "@wxn0brp/falcon-frame": ">=0.7.0"
+        "@wxn0brp/falcon-frame": "~0.7.0"
     },
     "files": [
         "dist"
