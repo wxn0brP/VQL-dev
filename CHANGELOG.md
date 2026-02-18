@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/wxn0brP/VQL-dev/compare/v0.4.1...v0.5.0) (2026-02-18)
+
+
+### Features
+
+* update ([8c78dc8](https://github.com/wxn0brP/VQL-dev/commit/8c78dc8828c94ed8103635e871a324c324ceddfd))
+
 ### [0.4.1](https://github.com/wxn0brP/VQL-dev/compare/v0.4.0...v0.4.1) (2026-01-31)
 
 
