@@ -37,5 +37,4 @@ function setUpResize() {
     });
 }
 
-const adapterBodyView = new AdapterBodyView();
-export default adapterBodyView;
+export const adapterBodyView = new AdapterBodyView();

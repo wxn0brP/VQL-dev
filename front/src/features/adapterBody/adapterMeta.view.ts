@@ -23,5 +23,4 @@ class AdapterMetaView implements UiComponent {
     }
 }
 
-const adapterMetaView = new AdapterMetaView();
-export default adapterMetaView;
+export const adapterMetaView = new AdapterMetaView();

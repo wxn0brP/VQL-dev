@@ -68,4 +68,3 @@ class AdaptersListView implements UiComponent {
 }
 
 export const adaptersListView = new AdaptersListView();
-export default adaptersListView;
