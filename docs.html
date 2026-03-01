@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VQL Documentation - URL Parameters</title>
+    <meta name="color-scheme" content="dark light">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        code {
+            background-color: #222;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        pre {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #222;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .param-name {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            background-color: #222;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        p {
+            margin-bottom: 9px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>VQL Documentation - URL Parameters</h1>
+
+    <p>This documentation describes the URL parameters that can be used to configure the VQL application.</p>
+
+    <h2>Configuration Parameters</h2>
+    <p>The application can be configured using the following URL parameters.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="param-name">p</code></td>
+                <td>
+                    Use for special modes or connecting to a <b>port</b> on localhost.
+                    <ul style="margin-top: 5px;">
+                        <li>A port number (e.g., <code>3000</code>).</li>
+                        <li><code>web</code>: Activates web channel mode (BroadcastChannel).</li>
+                    </ul>
+                </td>
+                <td><code>?p=3000</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">s, url</code></td>
+                <td>Use to provide a <b>full URL</b> to a VQL server endpoint.</td>
+                <td><code>?s=https://my-vql-server.com/VQL</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">ep</code></td>
+                <td>
+                    Custom endpoint path appended to the base URL.
+                    <ul style="margin-top: 5px;">
+                        <li>Default: <code>/VQL</code></li>
+                    </ul>
+                </td>
+                <td><code>?ep=/api/vql</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">h</code></td>
+                <td>
+                    Base64-encoded JSON object for custom HTTP headers.
+                    The value must be a base64-encoded JSON string.
+                </td>
+                <td><code>?h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">b</code></td>
+                <td>
+                    Base64-encoded JSON object for the request body.
+                    The value must be a base64-encoded JSON string.
+                </td>
+                <td><code>?h=eyJ0b2tlbiI6ICJhYmMxMjMifQ==</code></td>
+            </tr>
+            <tr>
+                <td><code class="param-name">ml</code></td>
+                <td>
+                    Comma-separated list of adapter logic IDs. When provided,
+                    the application uses these adapters instead of fetching them from the server.
+                    Useful for testing with mock or custom adapter configurations.
+                </td>
+                <td><code>?ml=buildings,roads,utilities</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Web Channel Mode (<code>p=web</code>)</h2>
+    <p>
+        Web channel mode enables communication between the VQL client and a VQL server running in a different browser
+        tab. This is primarily used for development to connect the UI to a local test server without cross-origin (CORS)
+        issues.
+    </p>
+    <p>
+        To use this mode, you must have the server environment running on the
+        <a href="./server" target="_blank">server.html</a>
+        page in a separate tab.
+    </p>
+
+    <h2>Usage Examples</h2>
+
+    <h3>Connect to local server on port 3000</h3>
+    <pre>$host/?p=3000</pre>
+
+    <h3>Connect to a remote server</h3>
+    <pre>$host/?s=https://my-vql-server.com</pre>
+
+    <h3>Use Web Channel Mode</h3>
+    <pre>$host/server.html</pre>
+    <br>
+    <pre>$host/?p=web</pre>
+
+    <h3>Custom endpoint path</h3>
+    <pre>$host/?s=http://localhost:8080&ep=/api/vql</pre>
+
+    <h3>Custom headers (base64-encoded JSON)</h3>
+    <pre>$host/?h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9</pre>
+
+    <h3>Custom body (base64-encoded JSON)</h3>
+    <pre>$host/?b=eyJ0b2tlbiI6ICJhYmMxMjMifQ==</pre>
+
+    <h3>Mock adapters list</h3>
+    <pre>$host/?ml=buildings,roads,utilities</pre>
+
+    <h3>Combined example</h3>
+    <pre>$host/?s=http://localhost:8080&ep=/VQL&h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9&ml=buildings,roads</pre>
+
+    <script>
+        const host = window.location.href.split("/").slice(0, -1).join("/");
+        document.querySelectorAll("pre").forEach((pre) => {
+            pre.innerHTML = pre.innerHTML.replace("$host", host);
+        });
+    </script>
+</body>
+
+</html>
