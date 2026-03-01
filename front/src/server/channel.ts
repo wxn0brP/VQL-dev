@@ -5,7 +5,7 @@ export const channel = new BroadcastChannel("VQL");
 
 function getAdapterMeta(id: string, db: ValtheraRemote) {
     let version = db.version;
-    if (id === "local") version += "-local.0";
+    if (id === "local") version += "-memory_local.0";
     else version += "-client.0";
 
     const adapter = {

@@ -1,5 +1,5 @@
 import { cfg } from "./config";
-import { textarea } from "./html";
+import { configTextarea } from "./html";
 
 const aliasInput = qi("#alias");
 const aliasSelect = qs<HTMLSelectElement>("#alias-select");
@@ -44,7 +44,7 @@ qs<HTMLFormElement>("form").addEventListener("submit", (e) => {
     url.username = nameInput.value;
     url.password = authInput.value;
 
-    textarea.value = textarea
+    configTextarea.value = configTextarea
         .value
         .split("\n")
         .map(line => {

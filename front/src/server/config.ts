@@ -1,5 +1,5 @@
 import { ValtheraRemote } from "@wxn0brp/db-client";
-import { textarea, ul } from "./html";
+import { configTextarea, ul } from "./html";
 import { db, VQL } from "./vql";
 import { buildSelect } from "./form";
 
@@ -18,7 +18,7 @@ function setDatabases(cfg: Config) {
 
 function getConfig() {
     cfg = {};
-    const lines = textarea.value.split("\n");
+    const lines = configTextarea.value.split("\n");
     for (const line of lines) {
         if (!line) continue;
         const [name, value] = line.split(" ");

@@ -1,21 +1,32 @@
 import { doConfig } from "./config";
 import { db } from "./vql";
 
-export const textarea = qs<HTMLTextAreaElement>("textarea");
+export const configTextarea = qs<HTMLTextAreaElement>("textarea");
 export const ul = qs<HTMLUListElement>("ul");
 export const memoryDbTextarea = qs<HTMLTextAreaElement>("#memory-db");
+export const saveStatusSpan = qs("#save-status");
+export const saveBtn = qs<HTMLButtonElement>("#save");
 
 qs("#run").addEventListener("click", () => doConfig());
-textarea.addEventListener("keyup", (e) => {
+configTextarea.addEventListener("keyup", (e) => {
     if (e.shiftKey && e.key === "Enter") {
         doConfig();
     }
 });
 
-qs("#save").addEventListener("click", () => {
-    const data = textarea.value;
+configTextarea.addEventListener("input", () => setSaveStatus(false));
+
+saveBtn.addEventListener("click", () => {
+    const data = configTextarea.value;
     localStorage.setItem("vql-server-config", data);
+    setSaveStatus(true);
 });
+
+function setSaveStatus(val: boolean) {
+    saveStatusSpan.innerHTML = val ? "💜" : "❌";
+    saveBtn.title = val ? "Config saved" : "Save config";
+}
+setSaveStatus(true);
 
 function dumpMemoryDb() {
     const memoryAction = db.dbAction as any;
@@ -35,7 +46,7 @@ function loadMemoryDb() {
 setTimeout(() => {
     const data = localStorage.getItem("vql-server-config");
     if (data) {
-        textarea.value = data;
+        configTextarea.value = data;
         doConfig();
     }
     dumpMemoryDb();
