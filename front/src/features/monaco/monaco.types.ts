@@ -1,5 +1,5 @@
 import { apiService } from "#services";
-import $store from "#store";
+import { $store } from "#store";
 import { VQL_Query } from "@wxn0brp/vql-client/vql";
 import { monaco } from "./create";
 import { getQuery } from ".";

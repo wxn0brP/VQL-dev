@@ -1,10 +1,18 @@
 import { setQuery } from "#features/monaco";
 import { setCollectionTypes } from "#features/monaco/monaco.types";
-import $store from "#store";
+import { $store } from "#store";
 import { UiComponent } from "@wxn0brp/flanker-ui";
 import "./queryHistory.scss";
+import { defaultFetchUrl } from "#init";
 
-const HISTORY_KEY = "vql-query-history";
+const HISTORY_KEY = "vql-query-history/" + getKeyByConfig();
+
+function getKeyByConfig() {
+    if (defaultFetchUrl.toLowerCase() === "web") return "web";
+    const sp = new URLSearchParams(window.location.search);
+    if (sp.has("ml")) return defaultFetchUrl + "/?ml=" + sp.get("ml");
+    return defaultFetchUrl;
+}
 
 class QueryHistoryView implements UiComponent {
     element: HTMLDivElement;
@@ -23,9 +31,8 @@ class QueryHistoryView implements UiComponent {
         });
 
         $store.history.subscribe(() => this.render());
-        $store.history.subscribe(val => localStorage.setItem(HISTORY_KEY, JSON.stringify(val)));
-
         $store.history.set(JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"));
+        $store.history.subscribe(val => localStorage.setItem(HISTORY_KEY, JSON.stringify(val)));
     }
 
     render() {

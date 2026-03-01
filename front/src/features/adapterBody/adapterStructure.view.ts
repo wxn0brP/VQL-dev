@@ -1,5 +1,5 @@
 import { mountView } from "@wxn0brp/flanker-ui";
-import $store from "#store";
+import { $store } from "#store";
 import { formatUnifiedTypes } from "./helpers";
 import { apiService } from "#services";
 import { adapterResultView } from "./adapterResult.view";

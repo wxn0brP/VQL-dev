@@ -1,7 +1,7 @@
 import { adapterResultView } from "#features/adapterBody/adapterResult.view";
 import { apiService } from "#services";
-import $store from "#store";
-import editor, { monaco } from "./create";
+import { $store } from "#store";
+import { editor, monaco } from "./create";
 import "./monaco.scss";
 
 export function getQueryRaw() {

@@ -1,4 +1,4 @@
-import $store from "#store";
+import { $store } from "#store";
 import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
 import "./adapter.scss";
 import { adapterResultView } from "./adapterResult.view";

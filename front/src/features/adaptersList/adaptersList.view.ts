@@ -1,5 +1,5 @@
 import { setDbList } from "#features/monaco/monaco.types";
-import $store from "#store";
+import { $store } from "#store";
 import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
 import { adapterCollectionsView } from "./adapterCollections.view";
 import "./adapters-list.scss";

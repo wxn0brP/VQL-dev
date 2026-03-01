@@ -19,7 +19,7 @@ import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 }
 
 const container = qs("#editor");
-let editor = monaco.editor.create(container, {
+export let editor = monaco.editor.create(container, {
     value: ``,
     language: "typescript",
     theme: "vs-dark",
@@ -28,5 +28,4 @@ let editor = monaco.editor.create(container, {
     minimap: { enabled: false }
 });
 
-export default editor;
 export { monaco };

@@ -1,5 +1,5 @@
 import { AdaptersList_Entry } from "#features/adaptersList/types";
-import $store from "#store";
+import { $store } from "#store";
 import { UiComponent } from "@wxn0brp/flanker-ui";
 
 class AdapterMetaView implements UiComponent {
