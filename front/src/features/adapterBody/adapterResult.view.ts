@@ -57,8 +57,7 @@ class AdapterResultView implements UiComponent {
                 ? (sort.direction === "asc" ? " /\\" : "\\/")
                 : "";
             return `<th data-sort="${h}" style="cursor: pointer; user-select: none;">${h}${sortIcon}</th>`;
-        }).join("")
-
+        }).join("");
 
         const table = `
 <h2>${adapter}/${collection}</h2>
