@@ -1,13 +1,65 @@
 import { ValtheraClass, ValtheraCompatible } from "@wxn0brp/db-core";
-import FalconFrame from "@wxn0brp/falcon-frame";
+import FalconFrame, { Router } from "@wxn0brp/falcon-frame";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
 import { parseVQLS } from "@wxn0brp/vql/cpu/string/index";
 import { ValtheraResolverMeta } from "@wxn0brp/vql/helpers/apiAbstract";
 
-interface DevPanelOptions {
+export interface DevPanelOptions {
     port?: number;
     origins?: string[] | string;
 }
+
+export function setup_VQL_DEV(app: Router, processor: VQLProcessor) {
+    const router = app.router("/VQL");
+
+    router.use((req, res, next) => {
+        if (req.socket.remoteAddress !== "127.0.0.1") {
+            return res.status(403).send("You are not my master!");
+        }
+        next();
+    })
+
+    router.get("/health", () => "Life expectancy, Hide and Seek, Castling, Scars");
+
+    router.post("/query-string", async (req, res) => {
+        try {
+            const query = req.body.query;
+            const result = parseVQLS(query);
+            return { err: false, result };
+        } catch (err: any) {
+            res.status(500)
+            return { err: true, msg: err.message };
+        }
+    });
+
+    router.get("/get-adapters", async (req, res) => {
+        try {
+            const result = [];
+
+            const dbs = processor.dbInstances;
+            Object.keys(dbs).forEach((key) => {
+                result.push(getAdapterMeta(key, dbs[key]));
+            });
+
+            return result;
+        } catch (err: any) {
+            res.status(500).json({ error: err.message });
+        }
+    });
+
+    router.get("/get-adapter", async (req, res) => {
+        try {
+            const id = req.query.id;
+            const adapter = processor.dbInstances[id];
+            if (!adapter) return res.status(404).json({ error: "Adapter not found" });
+
+            return getAdapterMeta(id, adapter);
+        } catch (err: any) {
+            res.status(500).json({ error: err.message });
+        }
+    });
+}
+
 
 function isValtheraInstance(db: any): db is ValtheraClass {
     return (
@@ -33,78 +85,54 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
 }
 
 export class VqlDevPanel {
-    private app: FalconFrame;
-    private port: number;
-    private processor: VQLProcessor;
-    private origins = [
+    _app: FalconFrame;
+    _port: number;
+    _processor: VQLProcessor;
+    _origins = [
         "https://wxn0brp.github.io",
+        "localhost",
+        "localhost:*",
+        "127.0.0.1",
+        "127.0.0.1:*",
     ];
-    private started = false;
+    _started = false;
 
     constructor(processor: VQLProcessor, options: DevPanelOptions = {}) {
-        this.processor = processor;
-        this.port = options?.port ?? 3000;
-        this.app = new FalconFrame();
+        this._processor = processor;
+        this._port = options?.port ?? 48652;
+        this._app = new FalconFrame();
 
-        if (options?.origins) {
-            this.origins = [options.origins].flat();
-        }
+        if (options?.origins)
+            this._origins = [options.origins].flat();
+
+        const envOrigins = process.env.VQL_DEV_PANEL_ORIGINS;
+        if (envOrigins)
+            this._origins.push(...envOrigins.split(",").map(o => o.trim()));
     }
 
-    private setupHTTP() {
-        this.app.setOrigin(this.origins);
-        FF_VQL(this.app, this.processor);
+    _setupHTTP() {
+        this._app.setOrigin(this._origins);
+        FF_VQL(this._app, this._processor);
 
-        this.app.post("/VQL/query-string", async (req, res) => {
-            try {
-                const query = req.body.query;
-                const result = parseVQLS(query);
-                return { err: false, result };
-            } catch (err: any) {
-                res.status(500)
-                return { err: true, msg: err.message };
-            }
-        });
+        setup_VQL_DEV(this._app, this._processor);
 
-        this.app.get("/VQL/get-adapters", async (req, res) => {
-            try {
-                const result = [];
-
-                const dbs = this.processor.dbInstances;
-                Object.keys(dbs).forEach((key) => {
-                    result.push(getAdapterMeta(key, dbs[key]));
-                });
-
-                return result;
-            } catch (err: any) {
-                res.status(500).json({ error: err.message });
-            }
-        });
-
-        this.app.get("/VQL/get-adapter", async (req, res) => {
-            try {
-                const id = req.query.id;
-                const adapter = this.processor.dbInstances[id];
-                if (!adapter) return res.status(404).json({ error: "Adapter not found" });
-
-                return getAdapterMeta(id, adapter);
-            } catch (err: any) {
-                res.status(500).json({ error: err.message });
-            }
-        });
-
-        this.app.get("/", () => {
+        this._app.get("/", () => {
             return "Still running. Must've missed the shutdown memo.";
         });
     }
 
     public start() {
-        if (this.started) return console.warn("[DevPanelBackend] Already started.");
-        this.started = true;
-        this.app.listen(this.port, () => {
-            console.log(`[DevPanelBackend] Running at http://localhost:${this.port}`);
+        if (this._started)
+            return console.warn("[DevPanelBackend] Already started.");
+
+        if (process.env.NODE_ENV === "production")
+            throw new Error("VQL DevPanel is not available in production mode.");
+
+        this._started = true;
+        this._app.listen(this._port, () => {
+            console.log(`[DevPanelBackend] Running at http://localhost:${this._port}`);
         });
 
-        this.setupHTTP();
+        this._setupHTTP();
     }
 }

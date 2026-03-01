@@ -21,17 +21,17 @@
     },
     "peerDependencies": {
         "@wxn0brp/db-core": "~0.9.0",
-        "@wxn0brp/vql": "~0.11.0"
+        "@wxn0brp/vql": "~0.11.2"
     },
     "devDependencies": {
         "@types/node": "*",
         "@wxn0brp/db-core": "~0.9.0",
-        "@wxn0brp/vql": "^0.11.0",
+        "@wxn0brp/vql": "^0.11.2",
         "tsc-alias": "*",
         "typescript": "*"
     },
     "dependencies": {
-        "@wxn0brp/falcon-frame": "~0.7.0"
+        "@wxn0brp/falcon-frame": "~0.7.1"
     },
     "files": [
         "dist"
