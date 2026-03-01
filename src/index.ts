@@ -60,7 +60,6 @@ export function setup_VQL_DEV(app: Router, processor: VQLProcessor) {
     });
 }
 
-
 function isValtheraInstance(db: any): db is ValtheraClass {
     return (
         typeof db?.dbAction === "object" &&
@@ -112,9 +111,8 @@ export class VqlDevPanel {
 
     _setupHTTP() {
         this._app.setOrigin(this._origins);
-        FF_VQL(this._app, this._processor);
-
         setup_VQL_DEV(this._app, this._processor);
+        FF_VQL(this._app, this._processor);
 
         this._app.get("/", () => {
             return "Still running. Must've missed the shutdown memo.";
