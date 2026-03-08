@@ -13,7 +13,7 @@
         "typescript": "*",
         "esbuild": "^0.27.3",
         "esbuild-style-plugin": "^1.6.3",
-        "monaco-editor": "^0.54.0",
+        "monaco-editor": "^0.55.0",
         "sass": "^1.97.3"
     },
     "dependencies": {
