@@ -41,9 +41,12 @@ export async function doConfig() {
         url.password = "";
         url.username = "";
 
+        url.pathname += "/db/getCollections";
+        url.pathname = url.pathname.replaceAll("//", "/");
+
         let ok = false;
         try {
-            await fetch(url + "/db/getCollections", {
+            await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
