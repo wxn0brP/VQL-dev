@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/wxn0brP/VQL-dev/compare/v0.5.0...v0.5.1) (2026-03-20)
+
+
+### Features
+
+* config popup ([160f80b](https://github.com/wxn0brP/VQL-dev/commit/160f80b1ada8842c58605a207db3cdedcfa72370))
+* improve ui ([64b8d06](https://github.com/wxn0brP/VQL-dev/commit/64b8d068b2657ccba53e7059faf876344be6b1d2))
+* improve web server ([5542204](https://github.com/wxn0brP/VQL-dev/commit/55422045b3386df176a625d8abcdabe8bc9b1f85))
+* update ([c801b14](https://github.com/wxn0brP/VQL-dev/commit/c801b14eaec97c494f530e672f511987020107d6))
+
+
+### Bug Fixes
+
+* security ([bc771da](https://github.com/wxn0brP/VQL-dev/commit/bc771da732e38ed6468c0177bfc5f00e08f837d2))
+* test db connect ([8e5c9e1](https://github.com/wxn0brP/VQL-dev/commit/8e5c9e153d2a59093f31f1d7a335cbbfb20a4bdd))
+
 ## [0.5.0](https://github.com/wxn0brP/VQL-dev/compare/v0.4.1...v0.5.0) (2026-02-18)
 
 
