@@ -11,13 +11,13 @@
     },
     "devDependencies": {
         "typescript": "*",
-        "esbuild": "^0.27.3",
+        "esbuild": "^0.27.4",
         "esbuild-style-plugin": "^1.6.3",
         "monaco-editor": "^0.54.0",
-        "sass": "^1.97.3"
+        "sass": "^1.98.0"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "^0.90.0",
+        "@wxn0brp/db-client": "^0.100.0",
         "@wxn0brp/flanker-ui": "^0.5.1",
         "@wxn0brp/vql-client": "^0.2.9"
     }
