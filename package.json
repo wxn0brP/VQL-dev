@@ -28,7 +28,7 @@
         "@wxn0brp/db-core": "~0.10.0",
         "@wxn0brp/vql": "^0.11.2",
         "tsc-alias": "*",
-        "typescript": "*"
+        "typescript": "^5"
     },
     "dependencies": {
         "@wxn0brp/falcon-frame": "~0.7.1"
