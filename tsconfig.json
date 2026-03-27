@@ -9,7 +9,12 @@
         "outDir": "./dist",
         "inlineSourceMap": false,
         "removeComments": true,
-        "declaration": true
+        "declaration": true,
+        "rootDir": "./src",
+        "strict": false,
+        "types": [
+            "@types/node"
+        ]
     },
     "include": [
         "./src"
