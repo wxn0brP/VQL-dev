@@ -31,7 +31,7 @@
         "typescript": "^6"
     },
     "dependencies": {
-        "@wxn0brp/falcon-frame": "~0.7.1"
+        "@wxn0brp/falcon-frame": "~0.8.0"
     },
     "files": [
         "dist"
