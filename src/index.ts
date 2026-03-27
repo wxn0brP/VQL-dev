@@ -1,5 +1,5 @@
 import { ValtheraClass, ValtheraCompatible } from "@wxn0brp/db-core";
-import FalconFrame, { Router } from "@wxn0brp/falcon-frame";
+import FalconFrame, { RouteHandler, Router } from "@wxn0brp/falcon-frame";
 import VQLProcessor, { FF_VQL } from "@wxn0brp/vql";
 import { parseVQLS } from "@wxn0brp/vql/cpu/string/index";
 import { ValtheraResolverMeta } from "@wxn0brp/vql/helpers/apiAbstract";
@@ -32,35 +32,11 @@ export function setup_VQL_DEV(app: Router, processor: VQLProcessor) {
         }
     });
 
-    router.get("/get-adapters", async (req, res) => {
-        try {
-            const result = [];
-
-            const dbs = processor.dbInstances;
-            Object.keys(dbs).forEach((key) => {
-                result.push(getAdapterMeta(key, dbs[key]));
-            });
-
-            return result;
-        } catch (err: any) {
-            res.status(500).json({ error: err.message });
-        }
-    });
-
-    router.get("/get-adapter", async (req, res) => {
-        try {
-            const id = req.query.id;
-            const adapter = processor.dbInstances[id];
-            if (!adapter) return res.status(404).json({ error: "Adapter not found" });
-
-            return getAdapterMeta(id, adapter);
-        } catch (err: any) {
-            res.status(500).json({ error: err.message });
-        }
-    });
+    router.get("/get-adapters", getAdaptersHTTP(processor));
+    router.get("/get-adapter", getAdapterHTTP(processor));
 }
 
-function isValtheraInstance(db: any): db is ValtheraClass {
+export function isValtheraInstance(db: any): db is ValtheraClass {
     return (
         typeof db?.dbAction === "object" &&
         typeof db?.executor === "object" &&
@@ -68,7 +44,7 @@ function isValtheraInstance(db: any): db is ValtheraClass {
     );
 }
 
-function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMeta {
+export function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMeta {
     const adapter: ValtheraResolverMeta = {
         logic_id: id,
         type: "unknown",
@@ -81,6 +57,30 @@ function getAdapterMeta(id: string, db: ValtheraCompatible): ValtheraResolverMet
         Object.assign(adapter, db.meta);
     }
     return adapter;
+}
+
+export function getAdapterHTTP(processor: VQLProcessor): RouteHandler {
+    return (req, res) => {
+        try {
+            const id = req.query.id || req.body.id;
+            const adapter = processor.dbInstances[id];
+            if (!adapter) return res.status(404).json({ error: "Adapter not found" });
+
+            return getAdapterMeta(id, adapter);
+        } catch (err: any) {
+            res.status(500).json({ error: err.message });
+        }
+    }
+}
+
+export function getAdaptersHTTP(processor: VQLProcessor): RouteHandler {
+    return async (req, res) => {
+        try {
+            return Object.keys(processor.dbInstances).map((key) => getAdapterMeta(key, processor.dbInstances[key]));
+        } catch (err: any) {
+            res.status(500).json({ error: err.message });
+        }
+    }
 }
 
 export class VqlDevPanel {
