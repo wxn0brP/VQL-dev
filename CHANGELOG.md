@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/wxn0brP/VQL-dev/compare/v0.5.1...v0.5.2) (2026-03-27)
+
+
+### Features
+
+* export get adapter ([5c262ec](https://github.com/wxn0brP/VQL-dev/commit/5c262ecd1af87dd32be783ee45dafd233a0f7e23))
+
 ### [0.5.1](https://github.com/wxn0brP/VQL-dev/compare/v0.5.0...v0.5.1) (2026-03-20)
 
 
