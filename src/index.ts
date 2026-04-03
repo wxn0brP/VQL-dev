@@ -64,11 +64,12 @@ export function getAdapterHTTP(processor: VQLProcessor): RouteHandler {
         try {
             const id = req.query.id || req.body.id;
             const adapter = processor.dbInstances[id];
-            if (!adapter) return res.status(404).json({ error: "Adapter not found" });
+            if (!adapter)
+                return res.status(404).json({ err: true, msg: "Adapter not found" });
 
             return getAdapterMeta(id, adapter);
         } catch (err: any) {
-            res.status(500).json({ error: err.message });
+            res.status(500).json({ err: true, msg: err.message });
         }
     }
 }
@@ -78,7 +79,7 @@ export function getAdaptersHTTP(processor: VQLProcessor): RouteHandler {
         try {
             return Object.keys(processor.dbInstances).map((key) => getAdapterMeta(key, processor.dbInstances[key]));
         } catch (err: any) {
-            res.status(500).json({ error: err.message });
+            res.status(500).json({ err: true, msg: err.message });
         }
     }
 }
@@ -114,9 +115,8 @@ export class VqlDevPanel {
         setup_VQL_DEV(this._app, this._processor);
         FF_VQL(this._app, this._processor);
 
-        this._app.get("/", () => {
-            return "Still running. Must've missed the shutdown memo.";
-        });
+        this._app.get("/", () =>
+            "Still running. Must've missed the shutdown memo.");
     }
 
     public start() {
