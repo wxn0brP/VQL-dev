@@ -96,7 +96,7 @@
     <p>This documentation describes the URL parameters that can be used to configure the VQL application.</p>
 
     <h2>Configuration Parameters</h2>
-    <p>The application can be configured using the following URL parameters.</p>
+    <p>The application can be configured using URL parameters passed via hash (<code>#</code>) or query string (<code>?</code>). Hash parameters take precedence.</p>
 
     <table>
         <thead>
@@ -116,12 +116,12 @@
                         <li><code>web</code>: Activates web channel mode (BroadcastChannel).</li>
                     </ul>
                 </td>
-                <td><code>?p=3000</code></td>
+                <td><code>#p=3000</code></td>
             </tr>
             <tr>
                 <td><code class="param-name">s, url</code></td>
                 <td>Use to provide a <b>full URL</b> to a VQL server endpoint.</td>
-                <td><code>?s=https://my-vql-server.com/VQL</code></td>
+                <td><code>#s=https://my-vql-server.com/VQL</code></td>
             </tr>
             <tr>
                 <td><code class="param-name">ep</code></td>
@@ -131,7 +131,7 @@
                         <li>Default: <code>/VQL</code></li>
                     </ul>
                 </td>
-                <td><code>?ep=/api/vql</code></td>
+                <td><code>#ep=/api/vql</code></td>
             </tr>
             <tr>
                 <td><code class="param-name">h</code></td>
@@ -139,7 +139,7 @@
                     Base64-encoded JSON object for custom HTTP headers.
                     The value must be a base64-encoded JSON string.
                 </td>
-                <td><code>?h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9</code></td>
+                <td><code>#h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9</code></td>
             </tr>
             <tr>
                 <td><code class="param-name">b</code></td>
@@ -147,7 +147,7 @@
                     Base64-encoded JSON object for the request body.
                     The value must be a base64-encoded JSON string.
                 </td>
-                <td><code>?h=eyJ0b2tlbiI6ICJhYmMxMjMifQ==</code></td>
+                <td><code>#h=eyJ0b2tlbiI6ICJhYmMxMjMifQ==</code></td>
             </tr>
             <tr>
                 <td><code class="param-name">ml</code></td>
@@ -156,7 +156,7 @@
                     the application uses these adapters instead of fetching them from the server.
                     Useful for testing with mock or custom adapter configurations.
                 </td>
-                <td><code>?ml=buildings,roads,utilities</code></td>
+                <td><code>#ml=buildings,roads,utilities</code></td>
             </tr>
         </tbody>
     </table>
@@ -176,30 +176,30 @@
     <h2>Usage Examples</h2>
 
     <h3>Connect to local server on port 3000</h3>
-    <pre>$host/?p=3000</pre>
+    <pre>$host/#p=3000</pre>
 
     <h3>Connect to a remote server</h3>
-    <pre>$host/?s=https://my-vql-server.com</pre>
+    <pre>$host/#s=https://my-vql-server.com</pre>
 
     <h3>Use Web Channel Mode</h3>
     <pre>$host/server.html</pre>
     <br>
-    <pre>$host/?p=web</pre>
+    <pre>$host/#p=web</pre>
 
     <h3>Custom endpoint path</h3>
-    <pre>$host/?s=http://localhost:8080&ep=/api/vql</pre>
+    <pre>$host/#s=http://localhost:8080&ep=/api/vql</pre>
 
     <h3>Custom headers (base64-encoded JSON)</h3>
-    <pre>$host/?h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9</pre>
+    <pre>$host/#h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9</pre>
 
     <h3>Custom body (base64-encoded JSON)</h3>
-    <pre>$host/?b=eyJ0b2tlbiI6ICJhYmMxMjMifQ==</pre>
+    <pre>$host/#b=eyJ0b2tlbiI6ICJhYmMxMjMifQ==</pre>
 
     <h3>Mock adapters list</h3>
-    <pre>$host/?ml=buildings,roads,utilities</pre>
+    <pre>$host/#ml=buildings,roads,utilities</pre>
 
     <h3>Combined example</h3>
-    <pre>$host/?s=http://localhost:8080&ep=/VQL&h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9&ml=buildings,roads</pre>
+    <pre>$host/#s=http://localhost:8080&ep=/VQL&h=eyJhdXRob3JpemF0aW9uIjogIkJlYXJlciB0b2tlbiJ9&ml=buildings,roads</pre>
 
     <script>
         const host = window.location.href.split("/").slice(0, -1).join("/");

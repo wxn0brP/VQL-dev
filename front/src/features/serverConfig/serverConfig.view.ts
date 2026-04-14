@@ -4,7 +4,7 @@ import "./server-config.scss";
 type Mode = "web" | "http";
 
 function hasRequiredParams(): boolean {
-    const p = new URLSearchParams(window.location.search);
+    const p = new URLSearchParams(location.hash.slice(1) || window.location.search);
     return p.has("server") || p.has("url") || p.has("s") || p.has("p") || p.has("port");
 }
 
@@ -144,8 +144,15 @@ class ServerConfigView implements UiComponent {
             if (body) params.set("b", btoa(JSON.stringify(body)));
         }
 
-        window.location.href = `${window.location.pathname}?${params.toString()}`;
+        window.location.href = `${window.location.pathname}#${params.toString()}`;
     }
 }
+
+let lastHash = location.hash;
+
+window.addEventListener("hashchange", () => {
+    if (location.hash !== lastHash)
+        location.reload();
+})
 
 export const serverConfigView = new ServerConfigView();
