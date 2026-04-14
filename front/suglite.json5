@@ -10,8 +10,4 @@
             "/": "../public",
         },
     },
-    restart_cmd: "clear",
-    events: {
-        rs: "clear",
-    },
 }
