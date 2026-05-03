@@ -27,7 +27,7 @@
     "devDependencies": {
         "@types/node": "*",
         "@wxn0brp/db-core": "^0.10.1",
-        "@wxn0brp/vql": "^0.11.4",
+        "@wxn0brp/vql": "^0.12.0",
         "tsc-alias": "^1",
         "typescript": "^6"
     },
