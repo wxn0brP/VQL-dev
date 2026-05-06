@@ -8,7 +8,7 @@ const authInput = qi("#auth");
 const urlInput = qi("#url");
 
 export function buildSelect() {
-    const keys = Object.keys(cfg);
+    const keys = configTextarea.value.split("\n").map(line => line.split(" ")[0]).filter(Boolean);
     aliasSelect.innerHTML = "";
     const add = document.createElement("option");
     add.value = "";
@@ -31,7 +31,9 @@ function setValues(name: string) {
     aliasInput.value = name;
     nameInput.value = url.username;
     authInput.value = url.password;
-    urlInput.value = url.origin;
+    url.username = "";
+    url.password = "";
+    urlInput.value = url.href;
 }
 
 aliasInput.addEventListener("change", () => setValues(aliasInput.value));
@@ -44,6 +46,13 @@ qs<HTMLFormElement>("form").addEventListener("submit", (e) => {
     url.username = nameInput.value;
     url.password = authInput.value;
 
+    if (!aliasSelect.value) {
+        configTextarea.value += `\n${name} ${url.toString()}\n`;
+        buildSelect();
+        aliasSelect.value = name;
+        return;
+    }
+
     configTextarea.value = configTextarea
         .value
         .split("\n")
@@ -51,7 +60,7 @@ qs<HTMLFormElement>("form").addEventListener("submit", (e) => {
             if (!line.trim()) return line;
             const key = line.split(" ")[0];
             if (key === name)
-                return `${name} ${url.href}`;
+                return `${name} ${url.toString()}`;
             return line;
         })
         .join("\n");
