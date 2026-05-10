@@ -5,20 +5,27 @@ import { monaco } from "./create";
 import { getQuery } from ".";
 
 export function setTsType(file: string, content: string) {
-    content = content
-        .replace(/^\s*import .*?;?\s*$/gm, "")
-        .replace(/^\s*export\s+{[^}]*};?\s*$/gm, "")
-        .replace(/export\s+default\s+/, "declare ")
-        .replace(/export\s+(?=(class|interface|type|const|function|enum|namespace))/g, "declare ")
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(content, "ts:VQL_" + file + ".d.ts");
+    const path = "file:///node_modules/VQL/" + file + ".d.ts";
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(content, path);
 }
 
 fetch("./dist/vql.d.ts").then((res) => res.text()).then((content) => {
     content = content
+        .replace("export {};", "")
         .replace("db: string;", "db: V_DataBasesList;")
         .replaceAll("collection: string;", "collection: V_CollectionList;")
         .replace("RelationTypes.Path", "V_RelationPaths")
         .replace("path: Path;", "path: V_RelationPaths;")
+        .replace(/^(\s*)export\s+/gm, "$1")
+        .replace(/^(\s*)declare namespace/gm, "$1namespace")
+        .replace(/^(\s*)declare class/gm, "$1class")
+
+    content = `
+declare global {
+    ${content}
+}
+export {};
+    `
     setTsType("raw", content);
 });
 
