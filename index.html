@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>VQL Dev Tool</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./dist/index.css">
+</head>
+
+<body>
+    <main>
+        <nav>
+            <h1 id="adapters-header">Adapters</h1>
+            <div id="adapters-list"></div>
+            <h1 id="query-history-header">History</h1>
+            <div id="query-history"></div>
+        </nav>
+
+        <div id="adapter-body">
+            <button id="toggle-sidebar">&lt;||</button>
+            <div id="resize">&lt;-&gt;</div>
+            <h2>Adapter</h2>
+            <div id="adapter-meta"></div>
+            <div id="adapter-structure" style="display: none;">
+                <h2>Structure</h2>
+                <div id="adapter-structure-content"></div>
+            </div>
+            <div id="adapter-result"></div>
+        </div>
+
+        <div id="editor"></div>
+        <div id="editor-buttons">
+            <button id="eb-run">Run</button>
+            <button id="eb-reset">Reset</button>
+        </div>
+    </main>
+
+    <div id="server-config-overlay">
+        <div id="server-config-dialog">
+            <h2>Connect to server</h2>
+            <p>Choose a connection mode to get started.</p>
+            <form id="server-config-form">
+                <div class="server-config-modes">
+                    <div class="server-config-mode">
+                        <label class="server-config-mode-label">
+                            <input type="radio" name="mode" value="web" />
+                            <span class="mode-label-text">
+                                <strong>Web (BroadcastChannel)</strong>
+                                <span>Connect via browser tab</span>
+                            </span>
+                        </label>
+                        <div class="mode-section" data-mode="web" hidden>
+                            <p class="server-config-hint">
+                                Communicates with an open VQL server tab via BroadcastChannel.
+                            </p>
+                            <a class="server-config-web-link" href="./server.html" target="_blank">
+                                Open server.html
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="server-config-mode">
+                        <label class="server-config-mode-label">
+                            <input type="radio" name="mode" value="http" />
+                            <span class="mode-label-text">
+                                <strong>HTTP - VQL Server</strong>
+                                <span>Connect to any VQL server over HTTP</span>
+                            </span>
+                        </label>
+                        <div class="mode-section" data-mode="http" hidden>
+
+                            <div class="server-config-field">
+                                <label for="http-port">Port or URL</label>
+                                <input id="http-port" type="text" placeholder="e.g. 3000 or http://user:pass@host:3000"
+                                    autocomplete="off" spellcheck="false" />
+                            </div>
+
+                            <div class="server-config-field">
+                                <label for="http-endpoint">
+                                    Endpoint path
+                                    <span class="server-config-optional">(default: /VQL)</span>
+                                </label>
+                                <input id="http-endpoint" type="text" placeholder="/VQL" autocomplete="off"
+                                    spellcheck="false" />
+                            </div>
+
+                            <p class="server-config-hint">
+                                Auth can be embedded in the URL -
+                                <code>user:pass@host</code>, <code>?token=abc</code>, etc.
+                                Adapter list is fetched automatically from the server.
+                            </p>
+
+                            <label class="server-config-checkbox">
+                                <input type="checkbox" id="http-manual-toggle" />
+                                <span>
+                                    Manual adapter list
+                                    <span class="server-config-optional">
+                                        (no vql-dev)
+                                    </span>
+                                </span>
+                            </label>
+
+                            <div id="http-manual-section" hidden>
+                                <div class="server-config-field">
+                                    <label for="http-adapters">
+                                        Adapters
+                                        <span class="server-config-optional">(comma-separated)</span>
+                                    </label>
+                                    <input id="http-adapters" type="text" placeholder="e.g. users,products,orders"
+                                        autocomplete="off" spellcheck="false" />
+                                </div>
+                            </div>
+
+                            <div class="server-config-kv-section">
+                                <div class="server-config-kv-header">
+                                    <span>Headers <span class="server-config-optional">(VConfig.headers)</span></span>
+                                    <button type="button" class="kv-add-btn" data-target="headers">+ Add</button>
+                                </div>
+                                <div id="kv-headers" class="kv-list"></div>
+                            </div>
+
+                            <div class="server-config-kv-section">
+                                <div class="server-config-kv-header">
+                                    <span>Body fields <span class="server-config-optional">(VConfig.body)</span></span>
+                                    <button type="button" class="kv-add-btn" data-target="body">+ Add</button>
+                                </div>
+                                <div id="kv-body" class="kv-list"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="server-config-actions">
+                    <button type="button" id="server-config-cancel">Cancel</button>
+                    <button type="submit">Connect</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./dist/index.js"></script>
+</body>
+
+</html>

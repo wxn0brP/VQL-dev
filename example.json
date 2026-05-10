@@ -1,0 +1,54 @@
+{
+    "users": [
+        {
+            "_id": 1,
+            "name": "Alice",
+            "email": "alice@example.com"
+        },
+        {
+            "_id": 2,
+            "name": "Bob",
+            "email": "bob@example.com"
+        }
+    ],
+    "posts": [
+        {
+            "_id": 101,
+            "user_id": 1,
+            "title": "First Post by Alice",
+            "body": "This is the first post."
+        },
+        {
+            "_id": 102,
+            "user_id": 2,
+            "title": "Bob's Post",
+            "body": "Hello world!"
+        },
+        {
+            "_id": 103,
+            "user_id": 1,
+            "title": "Another Post by Alice",
+            "body": "Just sharing some thoughts."
+        }
+    ],
+    "comments": [
+        {
+            "_id": 1001,
+            "post_id": 101,
+            "user_id": 2,
+            "comment": "Great post!"
+        },
+        {
+            "_id": 1002,
+            "post_id": 102,
+            "user_id": 1,
+            "comment": "Interesting perspective, Bob."
+        },
+        {
+            "_id": 1003,
+            "post_id": 101,
+            "user_id": 1,
+            "comment": "Replying to my own post."
+        }
+    ]
+}
