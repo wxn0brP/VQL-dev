@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/wxn0brP/VQL-dev/compare/v0.5.3...v0.6.0) (2026-06-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump deps
+
+### Features
+
+* # params ([f05d2a3](https://github.com/wxn0brP/VQL-dev/commit/f05d2a35216791e01d443d75dcf7f0980d9b3fee))
+
+
+### Bug Fixes
+
+* monaco ([553ec05](https://github.com/wxn0brP/VQL-dev/commit/553ec05c2ff2b07113d13f3c1c883e40162fa1f6))
+* server form ([3a29d8a](https://github.com/wxn0brP/VQL-dev/commit/3a29d8ad0879cfcac47c63260def01e7a3aa371d))
+
+
+* bump deps ([e182730](https://github.com/wxn0brP/VQL-dev/commit/e182730a7e7bf2bb0a6be7ab49ed8ef368cbc6a3))
+
 ### [0.5.3](https://github.com/wxn0brP/VQL-dev/compare/v0.5.2...v0.5.3) (2026-03-27)
 
 ### [0.5.2](https://github.com/wxn0brP/VQL-dev/compare/v0.5.1...v0.5.2) (2026-03-27)
