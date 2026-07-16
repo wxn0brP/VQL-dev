@@ -15,7 +15,7 @@
         "monaco-editor": "^0.52.0",
         "monaco-types": "^0.1.2",
         "sass": "^1.99.0",
-        "typescript": "^6"
+        "typescript": "^7.0.0"
     },
     "dependencies": {
         "@wxn0brp/db-client": "^0.100.1",
