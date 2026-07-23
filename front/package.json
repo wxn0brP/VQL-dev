@@ -10,16 +10,16 @@
         "build": "bun run build.ts"
     },
     "devDependencies": {
-        "esbuild": "^0.28.0",
+        "esbuild": "^0.28",
         "esbuild-style-plugin": "^1.6.3",
         "monaco-editor": "^0.52.0",
         "monaco-types": "^0.1.2",
-        "sass": "^1.99.0",
-        "typescript": "^6"
+        "sass": "^1.101.6",
+        "typescript": "^7"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "^0.100.1",
+        "@wxn0brp/db-client": "^0.112.1",
         "@wxn0brp/flanker-ui": "^0.5.1",
-        "@wxn0brp/vql-client": "^0.2.12"
+        "@wxn0brp/vql-client": "^0.2.13"
     }
 }

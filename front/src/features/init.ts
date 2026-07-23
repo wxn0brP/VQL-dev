@@ -7,12 +7,12 @@ import { queryHistoryView } from "./queryHistory/queryHistory.view";
 import { serverConfigView } from "./serverConfig/serverConfig.view";
 
 const components: UiComponent[] = [
-    serverConfigView,
-    adaptersListView,
-    adapterBodyView,
-    adapterMetaView,
-    adapterResultView,
-    queryHistoryView,
+	serverConfigView,
+	adaptersListView,
+	adapterBodyView,
+	adapterMetaView,
+	adapterResultView,
+	queryHistoryView,
 ];
 
-components.forEach((component) => component.mount());
+components.forEach(component => component.mount());

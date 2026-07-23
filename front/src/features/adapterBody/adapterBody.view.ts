@@ -5,36 +5,37 @@ import { adapterResultView } from "./adapterResult.view";
 import { adapterStructureView } from "./adapterStructure.view";
 
 class AdapterBodyView implements UiComponent {
-    element: HTMLDivElement;
-    adapterStructure: ReturnType<typeof adapterStructureView>;
+	element: HTMLDivElement;
+	adapterStructure: ReturnType<typeof adapterStructureView>;
 
-    constructor() { }
+	mount() {
+		this.element = document.querySelector("#adapter-body");
+		this.adapterStructure = adapterStructureView();
+		adapterResultView.mount();
 
-    mount() {
-        this.element = document.querySelector("#adapter-body");
-        this.adapterStructure = adapterStructureView();
-        adapterResultView.mount();
+		$store.selectedCollection.subscribe(() => this.adapterStructure.load());
+		uiHelpers.storeHide(
+			this.element.querySelector("#adapter-structure"),
+			$store.selectedCollection,
+		);
 
-        $store.selectedCollection.subscribe(() => this.adapterStructure.load());
-        uiHelpers.storeHide(this.element.querySelector("#adapter-structure"), $store.selectedCollection);
-
-        setUpResize();
-    }
+		setUpResize();
+	}
 }
 
 function setUpResize() {
-    const editor = qs("#editor");
-    const resize = qs("#resize");
+	const editor = qs("#editor");
+	const resize = qs("#resize");
 
-    let isResizing = false;
-    resize.addEventListener("mousedown", () => isResizing = true);
-    document.addEventListener("mouseup", () => isResizing = false);
+	let isResizing = false;
+	resize.addEventListener("mousedown", () => (isResizing = true));
+	document.addEventListener("mouseup", () => (isResizing = false));
 
-    document.addEventListener("mousemove", (e) => {
-        if (!isResizing) return;
-        const px = Math.min(window.innerWidth - e.clientX, window.innerWidth / 2);
-        editor.style.setProperty("--w", px + "px");
-    });
+	document.addEventListener("mousemove", e => {
+		if (!isResizing) return;
+		const px = Math.min(window.innerWidth - e.clientX, window.innerWidth / 2);
+		editor.style.setProperty("--w", px + "px");
+	});
 }
 
 export const adapterBodyView = new AdapterBodyView();

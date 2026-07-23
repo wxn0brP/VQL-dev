@@ -1,5 +1,13 @@
-export const urlParams = new URLSearchParams(location.hash.slice(1) || window.location.search);
-let param = urlParams.get("server") || urlParams.get("url") || urlParams.get("s") || urlParams.get("p") || urlParams.get("port");
-if (param && !isNaN(parseInt(param))) param = "http://localhost:" + param;
+export const urlParams = new URLSearchParams(
+	location.hash.slice(1) || window.location.search,
+);
+let param =
+	urlParams.get("server") ||
+	urlParams.get("url") ||
+	urlParams.get("s") ||
+	urlParams.get("p") ||
+	urlParams.get("port");
+if (param && !Number.isNaN(parseInt(param)))
+	param = "http://localhost:" + param;
 
 export const defaultFetchUrl = param || "http://localhost:48652";
