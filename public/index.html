@@ -12,6 +12,14 @@
 </head>
 
 <body>
+    <script type="importmap">
+    {
+        "imports": {
+            "@wxn0brp/vql/": "https://esm.sh/@wxn0brp/vql/"
+        }
+    }
+    </script>
+
     <main>
         <nav>
             <h1 id="adapters-header">Adapters</h1>
@@ -34,6 +42,7 @@
 
         <div id="editor"></div>
         <div id="editor-buttons">
+            <button id="eb-convert">Parse</button>
             <button id="eb-run">Run</button>
             <button id="eb-reset">Reset</button>
         </div>

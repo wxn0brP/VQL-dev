@@ -1,6 +1,7 @@
 import { adapterResultView } from "#features/adapterBody/adapterResult.view";
 import { apiService } from "#services";
 import { $store } from "#store";
+import { parseVQLS } from "@wxn0brp/vql/cpu/string/index";
 import { editor, monaco } from "./create";
 import "./monaco.scss";
 
@@ -81,6 +82,46 @@ export function setQuery(query: string) {
 	editor.setValue(query);
 }
 
+export function VQL_parse() {
+	let code = getQueryRaw();
+
+	const start = code.indexOf("=");
+	if (start === -1) {
+		alert("Invalid query. Must start with `... =`");
+		return;
+	}
+
+	const end = code.indexOf(";;");
+	if (end === -1) {
+		alert("Invalid query. Must end with `;;`");
+		return;
+	}
+
+	code = code
+		.substring(start + 1, end)
+		.trim()
+		.slice(1, -1);
+
+	console.log(code);
+
+	try {
+		const result = parseVQLS(code);
+		console.log(result);
+		const formatted = JSON.stringify(result, null, 2).replace(
+			/"([a-zA-Z_$][a-zA-Z0-9_$]*)":/g,
+			"$1:",
+		);
+		const newCode =
+			editor.getValue() +
+			`\n\n//====Parsed====\nvar parsed_${Date.now()} = ` +
+			formatted;
+		editor.setValue(newCode);
+	} catch (e: any) {
+		alert("Parse error: " + e.message);
+	}
+}
+
 qs("#eb-run").on("click", VQL_run);
 qs("#eb-reset").on("click", () => VQL_reset());
+qs("#eb-convert").on("click", VQL_parse);
 VQL_reset(false);
