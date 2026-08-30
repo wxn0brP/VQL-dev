@@ -1,0 +1,10 @@
+{
+    "icon": "favicon.png",
+    "win_icon": "favicon.ico",
+    "branch": "front",
+    "name": "VQL DEV",
+    "description": "VQL Dev Panel",
+    "version": "0.0.1",
+    "author": "wxn0brP",
+    "static": {}
+}
