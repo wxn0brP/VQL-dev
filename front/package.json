@@ -12,7 +12,7 @@
     "devDependencies": {
         "esbuild": "^0.28",
         "esbuild-style-plugin": "^1.6.3",
-        "monaco-editor": "^0.52.0",
+        "monaco-editor": "^0.56.0",
         "monaco-types": "^0.1.2",
         "sass": "^1.101.6",
         "typescript": "^7"
