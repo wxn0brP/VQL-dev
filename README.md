@@ -1,16 +1,17 @@
 # VQL Dev Panel
 
-[![Install via Zhiva](https://img.shields.io/badge/Zhiva-install-blue)](zhiva://install/VQL-dev)
+[![Install via Zhiva](https://img.shields.io/badge/Zhiva-install-blue)](https://wxn0brp.github.io/Zhiva-page/i#app=VQL-dev)
 
-A development panel for exploring and interacting with **VQL** (Valthera Query Language) adapters and databases. The panel provides a UI for testing queries, inspecting adapters, and visualizing data structures.
+A development panel for exploring and interacting with **VQL** (Valthera Query Language) adapters and databases.
+The panel provides a UI for testing queries, inspecting adapters, and visualizing data structures.
 
-## 🔧 Features
+## Features
 
 - Browse database adapters and their collections.
 - View adapter metadata (type, version, etc.).
 - Explore inferred data structure types dynamically.
 
-## 📦 Installation
+## Installation
 
 To install the dev panel as a dev dependency:
 
@@ -18,13 +19,13 @@ To install the dev panel as a dev dependency:
 npm install --save-dev @wxn0brp/vql-dev
 ```
 
-## 📑 Links
+## Links
 
-[Frontend Public Host](https://wxn0brp.github.io/VQL-dev/)
+-> [Frontend Public Host](https://wxn0brp.github.io/VQL-dev/)
 
-[Docs](https://wxn0brp.github.io/VQL-dev/docs)
+-> [Docs](https://wxn0brp.github.io/VQL-dev/docs)
 
-## 🚀 Usage
+## Usage
 
 ### 1. **Start the Dev Panel**
 
@@ -43,8 +44,8 @@ panel.start();
 
 Open the following URL in your browser to access the dev panel:
 
-👉 https://wxn0brp.github.io/VQL-dev/?p=48652
+-> https://wxn0brp.github.io/VQL-dev/?p=48652
 
-## 📄 License
+## License
 
-MIT License - see [LICENSE](LICENSE).
+MIT License.
