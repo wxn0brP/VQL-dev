@@ -1,7 +1,6 @@
 import esbuild from "esbuild";
 import stylePlugin from "esbuild-style-plugin";
 import { copyFileSync } from "fs";
-const isDev = process.env.NODE_ENV === "development" || process.argv.includes("--dev");
 
 const workerEntryPoints = [
     "vs/language/json/json.worker.js",
@@ -35,7 +34,7 @@ esbuild.build({
         "@wxn0brp/vql"
     ],
     splitting: false,
-    minify: !isDev,
+    minify: true,
     plugins: [
         stylePlugin({
             renderOptions: {
