@@ -97,15 +97,17 @@ export function VQL_parse() {
 		return;
 	}
 
-	code = code
-		.substring(start + 1, end)
-		.trim()
-		.slice(1, -1);
+	code = code.substring(start + 1, end).trim();
+
+	if (code.startsWith("{")) {
+		alert("You can't parse an VQLR object.");
+		return;
+	}
 
 	console.log(code);
 
 	try {
-		const result = parseVQLS(code);
+		const result = parseVQLS(code.slice(1, -1));
 		console.log(result);
 		const formatted = JSON.stringify(result, null, 2).replace(
 			/"([a-zA-Z_$][a-zA-Z0-9_$]*)":/g,
