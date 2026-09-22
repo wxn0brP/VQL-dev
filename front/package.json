@@ -18,7 +18,7 @@
         "typescript": "^7"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "^0.120.1",
+        "@wxn0brp/db-client": "^0.120.3",
         "@wxn0brp/flanker-ui": "^0.5.2",
         "@wxn0brp/vql-client": "^0.2.13"
     }
