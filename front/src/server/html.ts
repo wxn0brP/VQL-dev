@@ -32,7 +32,7 @@ function setSaveStatus(val: boolean) {
 setSaveStatus(true);
 
 function dumpMemoryDb() {
-	const memoryAction = db.dbAction as any;
+	const memoryAction = db.adapter as any;
 	memoryDbTextarea.value = JSON.stringify(
 		Object.fromEntries(memoryAction.memory.entries()),
 		null,
@@ -42,7 +42,7 @@ function dumpMemoryDb() {
 
 function loadMemoryDb() {
 	try {
-		const memoryAction = db.dbAction as any;
+		const memoryAction = db.adapter as any;
 		const data = JSON.parse(memoryDbTextarea.value);
 		memoryAction.memory = new Map(Object.entries(data));
 	} catch (e) {
@@ -61,7 +61,7 @@ setTimeout(() => {
 
 memoryDbTextarea.addEventListener("input", () => loadMemoryDb());
 memoryDbTextarea.addEventListener("change", () => loadMemoryDb());
-db.emiter.on("*", () => dumpMemoryDb());
+db.emitter.on("*", () => dumpMemoryDb());
 
 qs("#memory-db-load-preset").addEventListener("click", async () => {
 	const preset = await fetch("example.json").then(res => res.json());
