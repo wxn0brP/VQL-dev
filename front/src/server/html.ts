@@ -6,6 +6,9 @@ export const ul = qs<HTMLUListElement>("ul");
 export const memoryDbTextarea = qs<HTMLTextAreaElement>("#memory-db");
 export const saveStatusSpan = qs("#save-status");
 export const saveBtn = qs<HTMLButtonElement>("#save");
+export const dbVersionSpan = qs("#db-version");
+
+dbVersionSpan.textContent = `v${db.version}`;
 
 qs("#run").addEventListener("click", () => doConfig());
 configTextarea.addEventListener("keyup", e => {
