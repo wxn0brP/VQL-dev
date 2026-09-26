@@ -1,10 +1,10 @@
 import { setDbList } from "#features/monaco/monaco.types";
+import { apiService } from "#services";
 import { $store } from "#store";
-import { UiComponent, uiHelpers } from "@wxn0brp/flanker-ui";
+import { UiComponent } from "@wxn0brp/flanker-ui";
 import { adapterCollectionsView } from "./adapterCollections.view";
 import "./adapters-list.scss";
 import { AdaptersList_Entry } from "./types";
-import { apiService } from "#services";
 
 class AdaptersListView implements UiComponent {
 	element: HTMLDivElement;
@@ -35,11 +35,9 @@ class AdaptersListView implements UiComponent {
 		});
 	}
 
-	mount(): void {
-		this.element = document.querySelector("#adapters-list")!;
-		uiHelpers.bindHandlers(this.element, {
-			"#adapters-header": () => this.load(),
-		});
+	mount() {
+		this.element = document.querySelector("#adapters-list");
+		qs("#adapters-header").on("click", () => this.load());
 
 		$store.selectedCollection.subscribe(collection => {
 			this.element.querySelectorAll("[data-collection]").forEach(button => {
