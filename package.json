@@ -28,7 +28,7 @@
         "@types/bun": "*",
         "@wxn0brp/biome": "*",
         "@wxn0brp/db-core": "^0.12.4",
-        "@wxn0brp/vql": "^0.13.2",
+        "@wxn0brp/vql": "^0.14.0",
         "tsc-alias": "^1",
         "typescript": "^7"
     },
