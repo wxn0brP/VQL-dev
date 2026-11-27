@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.4](https://github.com/wxn0brP/VQL-dev/compare/v0.6.3...v0.6.4) (2026-11-27)
+
+
+### Features
+
+* db version ([1d327d7](https://github.com/wxn0brP/VQL-dev/commit/1d327d78e68a34addfb3e42e9c0e59b7c7ca7028))
+
+
+### Bug Fixes
+
+* adapters reload ([b6c6151](https://github.com/wxn0brP/VQL-dev/commit/b6c61518aa7afc91de7ccfc9e948b9b390e8b9fc))
+* bundle ([dfcee65](https://github.com/wxn0brP/VQL-dev/commit/dfcee658f25809e43e03eda54b2924532d87f2cc))
+* db emitter ([02a53df](https://github.com/wxn0brP/VQL-dev/commit/02a53df99fb16e44505b7c88f5e1063d77d6a738))
+* parse VQLR ([bda6782](https://github.com/wxn0brP/VQL-dev/commit/bda678245461cc69af17e066c2ce31c5101bb4fe))
+* web server local db ([72058b5](https://github.com/wxn0brP/VQL-dev/commit/72058b5d9bd6f41dc6cafb9401550fdc985938e6))
+
 ### [0.6.3](https://github.com/wxn0brP/VQL-dev/compare/v0.6.2...v0.6.3) (2026-09-13)
 
 ### [0.6.2](https://github.com/wxn0brP/VQL-dev/compare/v0.6.1...v0.6.2) (2026-09-13)
